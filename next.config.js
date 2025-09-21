@@ -13,8 +13,8 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
-  // Cloudflare + S3 최적화 (HTTP로 임시 설정)
-  assetPrefix: process.env.NODE_ENV === 'production' ? 'http://canadatokorea.com' : '',
+  // Cloudflare + S3 최적화 (assetPrefix 제거 - 상대 경로 사용)
+  // assetPrefix: process.env.NODE_ENV === 'production' ? 'http://canadatokorea.com' : '',
   // lucide-react 아이콘 경로를 ESM .mjs로 명시적으로 모듈화하여 Next 변환 충돌 방지
   modularizeImports: {
     'lucide-react': {

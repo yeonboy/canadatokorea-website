@@ -1,0 +1,245 @@
+---
+alwaysApply: true
+description: UI consistency rules based on Real Korea Now page patterns
+---
+
+# UI Consistency Rules - Real Korea Now 기준
+
+## 페이지 구조 표준화
+
+### 1. 헤더 섹션 (Hero Section)
+```tsx
+{/* 헤더 */}
+<div className="relative text-white">
+  <img src="/images/headers/[page]-hero.jpg" alt="[Page] header" className="absolute inset-0 h-full w-full object-cover" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
+  <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 className="text-4xl font-bold mb-4">{t('[page].page.title', locale)}</h1>
+    <p className="text-xl text-blue-100 max-w-2xl">{t('[page].page.tagline', locale)}</p>
+  </div>
+</div>
+```
+
+### 2. 탭 네비게이션
+```tsx
+{/* 탭 네비게이션 */}
+<div className="border-b border-gray-200">
+  <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="flex space-x-8">
+      {tabs.map((tab) => (
+        <button
+          key={tab.key}
+          onClick={() => handleTabChange(tab.key)}
+          className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+            activeTab === tab.key
+              ? 'border-primary-500 text-primary-600'
+              : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+          }`}
+        >
+          <span className="mr-2 inline-block align-middle">
+            <img src={tab.icon} alt="tab icon" className="h-4 w-4 inline" />
+          </span>
+          {t(`[page].tabs.${tab.key}`, locale)}
+        </button>
+      ))}
+    </nav>
+  </div>
+</div>
+```
+
+### 3. 컨텐츠 영역
+```tsx
+{/* 탭 컨텐츠 */}
+<div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  {activeTab === 'main' && (
+    <div>
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('[page].section.main.title', locale)}</h2>
+        <p className="text-gray-600">{t('[page].section.main.desc', locale)}</p>
+      </div>
+      {/* 컨텐츠 */}
+    </div>
+  )}
+</div>
+```
+
+## 카드 컴포넌트 표준
+
+### 1. 카드 기본 구조 (TodayCards 기준)
+```tsx
+<div className="relative flex w-full flex-col rounded-2xl bg-white text-gray-700 shadow-md border border-gray-200/70">
+  {/* Banner */}
+  <div className={`relative mx-5 -mt-7 h-44 md:h-52 overflow-hidden rounded-2xl shadow-lg ${cardConfig.bannerBg}`}>
+    {card.image?.src && (
+      <img src={card.image.src} alt={card.image.alt || card.title} className="h-full w-full object-cover" />
+    )}
+    {/* color tint overlay to enforce type color */}
+    <div className={`absolute inset-0 ${cardConfig.bannerBg} opacity-70`} />
+    {/* subtle overlay for readability */}
+    <div className="absolute inset-0 bg-black/10" />
+    {/* Big category text */}
+    <div className="absolute top-5 left-7 text-white/95 font-extrabold tracking-tight text-3xl md:text-4xl capitalize">
+      {categoryLabel}
+    </div>
+  </div>
+
+  {/* Body */}
+  <div className="px-6 pt-6 pb-4">
+    <h3 className="mb-3 text-[22px] md:text-[26px] font-extrabold leading-snug tracking-tight text-gray-900">
+      {title}
+    </h3>
+    <p className="text-[15px] md:text-[17px] leading-8 text-gray-700">
+      {summary}
+    </p>
+  </div>
+
+  {/* Footer */}
+  <div className="px-6 pb-6 pt-0 flex items-center justify-between">
+    <div className="flex space-x-4">
+      {sources.map((source, index) => (
+        <a key={index} href={source.url} className="flex items-center space-x-1 text-xs text-gray-500 hover:text-primary-600 transition-colors">
+          <ExternalLink className="h-3 w-3" />
+          <span>{source.publisher}</span>
+        </a>
+      ))}
+    </div>
+    <Link href={`/[category]/${item.id}`} className="select-none rounded-xl bg-primary-600 py-3 px-6 text-center text-xs font-extrabold uppercase text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-primary-500/40">
+      {t('cards.viewDetails', locale)}
+    </Link>
+  </div>
+</div>
+```
+
+## 필터/토글 버튼 표준
+
+### 1. voxy-button 스타일 사용
+```tsx
+{filters.map((filter) => (
+  <button
+    key={filter.key}
+    onClick={() => setActiveFilter(filter.key)}
+    role="radio"
+    aria-checked={activeFilter === filter.key}
+    className={`voxy-button ${activeFilter === filter.key ? 'voxy-button--active' : ''}`}
+  >
+    <span className="button_top">{filter.label}</span>
+  </button>
+))}
+```
+
+### 2. 필터 컨테이너
+```tsx
+<div className="flex flex-wrap gap-3 mb-8" role="radiogroup" aria-label="Filter [items] by type">
+  {/* 필터 버튼들 */}
+</div>
+```
+
+## 그리드 레이아웃 표준
+
+### 1. 메인 컨텐츠 + 사이드바
+```tsx
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  {/* 메인 컨텐츠 */}
+  <div className="lg:col-span-8">
+    {/* 주요 내용 */}
+  </div>
+  
+  {/* 사이드바 */}
+  <div className="lg:col-span-4">
+    <Card className="p-4 sticky top-24">
+      {/* 사이드 컨텐츠 */}
+    </Card>
+  </div>
+</div>
+```
+
+### 2. 카드 그리드
+```tsx
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  {/* 카드들 */}
+</div>
+```
+
+## 타이포그래피 표준
+
+### 1. 페이지 제목
+- Hero: `text-4xl font-bold mb-4`
+- 섹션: `text-2xl font-bold text-gray-900 mb-2`
+- 카드 제목: `text-[22px] md:text-[26px] font-extrabold leading-snug tracking-tight text-gray-900`
+
+### 2. 본문
+- 설명: `text-gray-600`
+- 카드 본문: `text-[15px] md:text-[17px] leading-8 text-gray-700`
+- 작은 텍스트: `text-xs text-gray-500`
+
+## 색상 및 스타일링
+
+### 1. 컨테이너
+- 메인: `max-w-content mx-auto px-4 sm:px-6 lg:px-8`
+- 패딩: `py-8` (섹션), `py-12` (헤더)
+
+### 2. 카드 스타일
+- 기본: `bg-white rounded-lg border border-gray-200 p-6`
+- 고급: `rounded-2xl bg-white text-gray-700 shadow-md border border-gray-200/70`
+
+### 3. 링크/버튼
+- 기본 링크: `text-primary-600 hover:text-primary-700`
+- CTA 버튼: `bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors`
+
+## i18n 표준
+
+### 1. 모든 텍스트는 t() 함수 사용
+```tsx
+{t('[page].section.title', locale)}
+```
+
+### 2. 카드 컨텐츠 다국어
+```tsx
+{(locale === 'fr' && item.i18n?.fr?.title) ? item.i18n.fr.title : item.title}
+```
+
+## 접근성 표준
+
+### 1. 필터/토글
+- `role="radiogroup"` (컨테이너)
+- `role="radio"` `aria-checked` (개별 버튼)
+
+### 2. 이미지
+- 모든 이미지에 `alt` 속성
+- 로드 실패 시 `onError` 처리
+
+### 3. 네비게이션
+- 키보드 네비게이션 지원
+- 적절한 focus states
+
+## 모달 표준
+
+### 1. 전체화면 모달
+```tsx
+<div className="fixed inset-0 z-[2000] flex items-center justify-center">
+  <div className="absolute inset-0 bg-black/50" onClick={onClose} aria-hidden="true" />
+  <div className="relative bg-white w-[95vw] h-[85vh] rounded-xl shadow-xl border border-gray-200 overflow-hidden">
+    {/* 헤더 */}
+    <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
+      {/* 컨트롤 */}
+      <button onClick={onClose} className="voxy-button">
+        <span className="button_top">Close</span>
+      </button>
+    </div>
+    {/* 컨텐츠 */}
+  </div>
+</div>
+```
+
+## 성능 최적화
+
+### 1. 동적 import
+```tsx
+const ComponentName = dynamic(() => import('./ComponentName'), { ssr: false });
+```
+
+### 2. 이미지 최적화
+- WebP 사용 권장
+- lazy loading 적용
+- 적절한 크기 설정
+
+이 규칙들을 모든 페이지에 일관되게 적용하여 통일된 사용자 경험을 제공하세요.

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Post",
+  "type": "object",
+  "required": ["id", "title", "slug", "category", "language", "lastUpdatedKST", "sources", "status", "body"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string", "minLength": 5 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "category": { "type": "string", "enum": ["real-korea-now", "learn-korean", "travel-food", "community", "k-pop"] },
+    "language": { "type": "string", "enum": ["en", "fr"] },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "lastUpdatedKST": { "type": "string", "format": "date-time" },
+    "readingTimeMin": { "type": "integer", "minimum": 1 },
+    "seo": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string", "maxLength": 160 },
+        "keywords": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["description"]
+    },
+    "status": { "type": "string", "enum": ["Draft", "Needs-Source", "Approved", "Scheduled", "Published"] },
+    "schedule": {
+      "type": "object",
+      "properties": {
+        "publishAtKST": { "type": "string", "format": "date-time" }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["title", "url", "publisher"],
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "publisher": { "type": "string" },
+          "publishedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "adsPolicy": {
+      "type": "object",
+      "properties": {
+        "isSensitiveSection": { "type": "boolean" },
+        "topAdDisabled": { "type": "boolean" }
+      }
+    },
+    "body": { "type": "string", "minLength": 50 }
+  }
+}

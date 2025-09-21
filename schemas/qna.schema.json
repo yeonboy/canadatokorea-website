@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QnA",
+  "type": "object",
+  "required": ["id", "question", "answer", "topic", "language", "lastUpdatedKST", "sources", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "question": { "type": "string", "minLength": 5 },
+    "answer": { "type": "string", "minLength": 20 },
+    "topic": { "type": "string", "enum": ["living-cost", "housing", "visa", "transport", "tips", "other"] },
+    "language": { "type": "string", "enum": ["en", "fr"] },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "lastUpdatedKST": { "type": "string", "format": "date-time" },
+    "sources": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["title", "url"],
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "status": { "type": "string", "enum": ["Draft", "Approved", "Published"] }
+  }
+}

@@ -1,0 +1,110 @@
+name: Deploy to Cloudflare + AWS S3
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  AWS_REGION: us-east-1
+  S3_BUCKET: canadatokorea-website
+  CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build
+      run: |
+        npm run build
+        npm run export
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+    
+    # S3 동기화 (캐시 최적화 헤더 포함)
+    - name: Sync to S3 with cache headers
+      run: |
+        # HTML 파일 (4시간 캐시)
+        aws s3 sync ./out s3://${{ env.S3_BUCKET }} \
+          --exclude "*" --include "*.html" \
+          --cache-control "public, max-age=14400" \
+          --delete
+        
+        # CSS/JS 파일 (1년 캐시)
+        aws s3 sync ./out s3://${{ env.S3_BUCKET }} \
+          --exclude "*" --include "*.css" --include "*.js" \
+          --cache-control "public, max-age=31536000, immutable" \
+          --delete
+        
+        # 이미지 파일 (1주일 캐시)
+        aws s3 sync ./out s3://${{ env.S3_BUCKET }} \
+          --exclude "*" --include "*.jpg" --include "*.jpeg" --include "*.png" --include "*.gif" --include "*.webp" --include "*.svg" \
+          --cache-control "public, max-age=604800" \
+          --delete
+        
+        # 나머지 파일
+        aws s3 sync ./out s3://${{ env.S3_BUCKET }} \
+          --exclude "*.html" --exclude "*.css" --exclude "*.js" --exclude "*.jpg" --exclude "*.jpeg" --exclude "*.png" --exclude "*.gif" --exclude "*.webp" --exclude "*.svg" \
+          --delete
+    
+    # Cloudflare 캐시 퍼지
+    - name: Purge Cloudflare Cache
+      run: |
+        curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ env.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+          -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          --data '{"purge_everything":true}'
+    
+    # 선택적 파일별 캐시 퍼지 (더 정밀한 제어)
+    - name: Selective Cache Purge
+      run: |
+        curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ env.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+          -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          --data '{
+            "files": [
+              "https://canadatokorea.com/",
+              "https://canadatokorea.com/index.html",
+              "https://canadatokorea.com/real-korea-now/",
+              "https://canadatokorea.com/learn/",
+              "https://canadatokorea.com/sitemap.xml"
+            ]
+          }'
+
+  # 배포 후 성능 테스트
+  performance-test:
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Lighthouse CI
+      uses: treosh/lighthouse-ci-action@v9
+      with:
+        urls: |
+          https://canadatokorea.com
+          https://canadatokorea.com/real-korea-now
+          https://canadatokorea.com/tools/cost-estimator
+        configPath: './lighthouserc.json'
+        uploadArtifacts: true
+        temporaryPublicStorage: true
+

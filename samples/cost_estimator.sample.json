@@ -1,0 +1,168 @@
+{
+  "seoul": {
+    "id": "cost-seoul-2025",
+    "city": "Seoul",
+    "currency": "KRW",
+    "exchangeRateKRWPerCAD": 1000,
+    "exchangeRateAsOf": "2025-09-08",
+    "categories": [
+      {
+        "key": "food",
+        "label": "Food",
+        "calculationStrategy": "sum",
+        "items": [
+          { "name": "Lunch set", "unit": "per meal", "krw": 9000, "defaultFor": ["Student basic"], "i18n": { "fr": { "name": "Menu déjeuner", "unit": "par repas" } } },
+          { "name": "Cafe latte", "unit": "cup", "krw": 5500, "i18n": { "fr": { "name": "Café latte", "unit": "tasse" } } },
+          { "name": "Groceries", "unit": "per week", "krw": 60000, "i18n": { "fr": { "name": "Épicerie", "unit": "par semaine" } } },
+          { "name": "Street food", "unit": "snack", "krw": 3000, "i18n": { "fr": { "name": "Cuisine de rue", "unit": "collation" } } },
+          { "name": "Restaurant dinner", "unit": "per meal", "krw": 20000, "defaultFor": ["Young professional"], "i18n": { "fr": { "name": "Dîner au restaurant", "unit": "par repas" } } }
+        ],
+        "i18n": { "fr": { "label": "Nourriture" } }
+      },
+      {
+        "key": "transport",
+        "label": "Transport",
+        "calculationStrategy": "pick_one",
+        "items": [
+          { "name": "T-money monthly", "unit": "per month", "krw": 60000, "defaultFor": ["Student basic", "Young professional"], "i18n": { "fr": { "name": "T-money mensuel", "unit": "par mois" } } }
+        ],
+        "i18n": { "fr": { "label": "Transport" } }
+      },
+      {
+        "key": "rent",
+        "label": "Rent",
+        "calculationStrategy": "pick_one",
+        "items": [
+          { "name": "Goshiwon", "unit": "per month", "krw": 400000, "defaultFor": ["Student basic"], "i18n": { "fr": { "name": "Goshiwon", "unit": "par mois" } } },
+          { "name": "Sharehouse room", "unit": "per month", "krw": 600000, "i18n": { "fr": { "name": "Chambre en colocation", "unit": "par mois" } } },
+          { "name": "Off-campus studio", "unit": "per month", "krw": 800000, "defaultFor": ["Young professional"], "i18n": { "fr": { "name": "Studio hors campus", "unit": "par mois" } } },
+          { "name": "One-room apartment", "unit": "per month", "krw": 1200000, "i18n": { "fr": { "name": "Appartement une pièce", "unit": "par mois" } } }
+        ],
+        "i18n": { "fr": { "label": "Loyer" } }
+      },
+      {
+        "key": "utilities",
+        "label": "Utilities",
+        "calculationStrategy": "sum",
+        "items": [
+          { "name": "Electricity", "unit": "per month", "krw": 50000, "i18n": { "fr": { "name": "Électricité", "unit": "par mois" } } },
+          { "name": "Gas", "unit": "per month", "krw": 30000, "i18n": { "fr": { "name": "Gaz", "unit": "par mois" } } },
+          { "name": "Water", "unit": "per month", "krw": 20000, "i18n": { "fr": { "name": "Eau", "unit": "par mois" } } },
+          { "name": "Internet", "unit": "per month", "krw": 30000, "i18n": { "fr": { "name": "Internet", "unit": "par mois" } } }
+        ],
+        "i18n": { "fr": { "label": "Services publics" } }
+      },
+      {
+        "key": "mobile",
+        "label": "Mobile",
+        "calculationStrategy": "pick_one",
+        "items": [
+          { "name": "Basic plan (5GB)", "unit": "per month", "krw": 25000, "defaultFor": ["Student basic"], "i18n": { "fr": { "name": "Forfait de base (5Go)", "unit": "par mois" } } },
+          { "name": "Standard plan (10GB)", "unit": "per month", "krw": 35000, "defaultFor": ["Young professional"], "i18n": { "fr": { "name": "Forfait standard (10Go)", "unit": "par mois" } } },
+          { "name": "Premium plan (unlimited)", "unit": "per month", "krw": 55000, "i18n": { "fr": { "name": "Forfait premium (illimité)", "unit": "par mois" } } }
+        ],
+        "i18n": { "fr": { "label": "Mobile" } }
+      },
+      {
+        "key": "misc",
+        "label": "Miscellaneous",
+        "calculationStrategy": "pick_one",
+        "items": [
+          { "name": "Student activities", "unit": "per month", "krw": 50000, "defaultFor": ["Student basic"], "i18n": { "fr": { "name": "Activités étudiantes", "unit": "par mois" } } },
+          { "name": "Gym membership", "unit": "per month", "krw": 60000, "i18n": { "fr": { "name": "Abonnement salle de sport", "unit": "par mois" } } },
+          { "name": "Movie ticket", "unit": "per ticket", "krw": 12000, "i18n": { "fr": { "name": "Ticket de cinéma", "unit": "par billet" } } },
+          { "name": "Shopping & Social", "unit": "per month", "krw": 150000, "defaultFor": ["Young professional"], "i18n": { "fr": { "name": "Shopping & Vie sociale", "unit": "par mois" } } }
+        ],
+        "i18n": { "fr": { "label": "Divers" } }
+      }
+    ],
+    "scenarios": [
+      { "name": "Student basic", "i18n": { "fr": { "name": "Étudiant de base" } } },
+      { "name": "Young professional", "i18n": { "fr": { "name": "Jeune professionnel" } } }
+    ],
+    "lastUpdatedKST": "2025-09-08T10:00:00+09:00"
+  },
+  "busan": {
+    "id": "cost-busan-2025",
+    "city": "Busan",
+    "currency": "KRW",
+    "exchangeRateKRWPerCAD": 1000,
+    "exchangeRateAsOf": "2025-09-08",
+    "categories": [
+      {
+        "key": "food",
+        "label": "Food",
+        "calculationStrategy": "sum",
+        "items": [
+          { "name": "Lunch set", "unit": "per meal", "krw": 8000, "defaultFor": ["Student basic"], "i18n": { "fr": { "name": "Menu déjeuner", "unit": "par repas" } } },
+          { "name": "Cafe latte", "unit": "cup", "krw": 5000, "i18n": { "fr": { "name": "Café latte", "unit": "tasse" } } },
+          { "name": "Groceries", "unit": "per week", "krw": 55000, "i18n": { "fr": { "name": "Épicerie", "unit": "par semaine" } } },
+          { "name": "Street food", "unit": "snack", "krw": 2500, "i18n": { "fr": { "name": "Cuisine de rue", "unit": "collation" } } },
+          { "name": "Restaurant dinner", "unit": "per meal", "krw": 18000, "defaultFor": ["Young professional"], "i18n": { "fr": { "name": "Dîner au restaurant", "unit": "par repas" } } }
+        ],
+        "i18n": { "fr": { "label": "Nourriture" } }
+      },
+      {
+        "key": "transport",
+        "label": "Transport",
+        "calculationStrategy": "pick_one",
+        "items": [
+          { "name": "T-money monthly", "unit": "per month", "krw": 55000, "defaultFor": ["Student basic", "Young professional"], "i18n": { "fr": { "name": "T-money mensuel", "unit": "par mois" } } }
+        ],
+        "i18n": { "fr": { "label": "Transport" } }
+      },
+      {
+        "key": "rent",
+        "label": "Rent",
+        "calculationStrategy": "pick_one",
+        "items": [
+          { "name": "Goshiwon", "unit": "per month", "krw": 350000, "defaultFor": ["Student basic"], "i18n": { "fr": { "name": "Goshiwon", "unit": "par mois" } } },
+          { "name": "Sharehouse room", "unit": "per month", "krw": 500000, "i18n": { "fr": { "name": "Chambre en colocation", "unit": "par mois" } } },
+          { "name": "Off-campus studio", "unit": "per month", "krw": 650000, "defaultFor": ["Young professional"], "i18n": { "fr": { "name": "Studio hors campus", "unit": "par mois" } } },
+          { "name": "One-room apartment", "unit": "per month", "krw": 1000000, "i18n": { "fr": { "name": "Appartement une pièce", "unit": "par mois" } } }
+        ],
+        "i18n": { "fr": { "label": "Loyer" } }
+      },
+      {
+        "key": "utilities",
+        "label": "Utilities",
+        "calculationStrategy": "sum",
+        "items": [
+          { "name": "Electricity", "unit": "per month", "krw": 45000, "i18n": { "fr": { "name": "Électricité", "unit": "par mois" } } },
+          { "name": "Gas", "unit": "per month", "krw": 28000, "i18n": { "fr": { "name": "Gaz", "unit": "par mois" } } },
+          { "name": "Water", "unit": "per month", "krw": 18000, "i18n": { "fr": { "name": "Eau", "unit": "par mois" } } },
+          { "name": "Internet", "unit": "per month", "krw": 28000, "i18n": { "fr": { "name": "Internet", "unit": "par mois" } } }
+        ],
+        "i18n": { "fr": { "label": "Services publics" } }
+      },
+      {
+        "key": "mobile",
+        "label": "Mobile",
+        "calculationStrategy": "pick_one",
+        "items": [
+          { "name": "Basic plan (5GB)", "unit": "per month", "krw": 24000, "defaultFor": ["Student basic"], "i18n": { "fr": { "name": "Forfait de base (5Go)", "unit": "par mois" } } },
+          { "name": "Standard plan (10GB)", "unit": "per month", "krw": 33000, "defaultFor": ["Young professional"], "i18n": { "fr": { "name": "Forfait standard (10Go)", "unit": "par mois" } } },
+          { "name": "Premium plan (unlimited)", "unit": "per month", "krw": 53000, "i18n": { "fr": { "name": "Forfait premium (illimité)", "unit": "par mois" } } }
+        ],
+        "i18n": { "fr": { "label": "Mobile" } }
+      },
+      {
+        "key": "misc",
+        "label": "Miscellaneous",
+        "calculationStrategy": "pick_one",
+        "items": [
+          { "name": "Student activities", "unit": "per month", "krw": 40000, "defaultFor": ["Student basic"], "i18n": { "fr": { "name": "Activités étudiantes", "unit": "par mois" } } },
+          { "name": "Gym membership", "unit": "per month", "krw": 55000, "i18n": { "fr": { "name": "Abonnement salle de sport", "unit": "par mois" } } },
+          { "name": "Movie ticket", "unit": "per ticket", "krw": 11000, "i18n": { "fr": { "name": "Ticket de cinéma", "unit": "par billet" } } },
+          { "name": "Shopping & Social", "unit": "per month", "krw": 120000, "defaultFor": ["Young professional"], "i18n": { "fr": { "name": "Shopping & Vie sociale", "unit": "par mois" } } }
+        ],
+        "i18n": { "fr": { "label": "Divers" } }
+      }
+    ],
+    "scenarios": [
+      { "name": "Student basic", "i18n": { "fr": { "name": "Étudiant de base" } } },
+      { "name": "Young professional", "i18n": { "fr": { "name": "Jeune professionnel" } } }
+    ],
+    "lastUpdatedKST": "2025-09-08T10:00:00+09:00"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schedule",
+  "type": "object",
+  "required": ["id", "contentId", "publishAtKST", "createdAt"],
+  "properties": {
+    "id": { "type": "string" },
+    "contentId": { "type": "string" },
+    "publishAtKST": { "type": "string", "format": "date-time" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "status": { "type": "string", "enum": ["Scheduled", "Published", "Cancelled"] },
+    "notes": { "type": "string" }
+  }
+}

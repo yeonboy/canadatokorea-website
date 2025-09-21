@@ -1,0 +1,332 @@
+[
+  {
+    "id": "qna-living-001",
+    "question": "How much money should I budget per month as a Canadian student in Seoul?",
+    "answer": "For a basic student lifestyle in Seoul, budget CAD$1,200-1,600 (₩1.2-1.6 million) monthly. Breakdown: Rent ₩600-900k (goshiwon to studio), Food ₩300-400k, Transport ₩60-80k, Mobile ₩30-40k, Utilities ₩80-120k, Misc ₩50-100k. Consider university housing first - often cheaper and includes utilities.",
+    "i18n": {
+      "fr": {
+        "question": "Quel budget mensuel un étudiant canadien doit-il prévoir à Séoul ?",
+        "answer": "Pour un mode de vie étudiant de base à Séoul, prévoyez un budget mensuel de 1 200 à 1 600 $CA (1,2 à 1,6 million ₩). Répartition : Loyer 600-900k ₩ (goshiwon à studio), Nourriture 300-400k ₩, Transport 60-80k ₩, Mobile 30-40k ₩, Services publics 80-120k ₩, Divers 50-100k ₩. Envisagez d'abord le logement universitaire - souvent moins cher et incluant les services publics.",
+        "tags": ["budget", "étudiant", "séoul", "dépenses-mensuelles", "canada"]
+      }
+    },
+    "topic": "living-cost",
+    "language": "en",
+    "tags": [
+      "budget",
+      "student",
+      "seoul",
+      "monthly-expenses",
+      "canada"
+    ],
+    "lastUpdatedKST": "2025-09-08T10:10:00+09:00",
+    "sources": [
+      {
+        "title": "Seoul Open Data Portal - Living Cost Survey 2024",
+        "url": "https://data.seoul.go.kr/dataList/OA-15245"
+      },
+      {
+        "title": "Study in Korea - Budget Guide",
+        "url": "https://studyinkorea.go.kr/budget"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-transport-001",
+    "question": "What's the best subway app for foreigners in Seoul?",
+    "answer": "Top 3 recommendations: 1) **Citymapper** - Best overall with English interface, real-time delays, and step-by-step directions. 2) **Subway Map** - Simple, works offline, clean design. 3) **KakaoMap** - Most accurate but in Korean, use as backup. Download all three, use Citymapper as primary.",
+    "i18n": {
+      "fr": {
+        "question": "Quelle est la meilleure application de métro pour les étrangers à Séoul ?",
+        "answer": "Top 3 recommandations : 1) **Citymapper** - Le meilleur dans l'ensemble avec une interface en anglais, les retards en temps réel et des instructions pas à pas. 2) **Subway Map** - Simple, fonctionne hors ligne, design épuré. 3) **KakaoMap** - Le plus précis mais en coréen, à utiliser en secours. Téléchargez les trois, utilisez Citymapper comme principal.",
+        "tags": ["métro", "applications", "navigation", "séoul", "anglais"]
+      }
+    },
+    "topic": "transport",
+    "language": "en",
+    "tags": [
+      "subway",
+      "apps",
+      "navigation",
+      "seoul",
+      "english"
+    ],
+    "lastUpdatedKST": "2025-09-08T09:30:00+09:00",
+    "sources": [
+      {
+        "title": "Seoul Metro Official App Recommendations",
+        "url": "https://example.metro.seoul.kr/eng/apps"
+      },
+      {
+        "title": "Expat Seoul Transportation Guide",
+        "url": "https://example.expat-guide.kr/transport"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-housing-001",
+    "question": "How do I find an apartment in Seoul as a Canadian?",
+    "answer": "**Steps**: 1) Use Zigbang or Peter Pan apps (Korean real estate), 2) Contact real estate agent (부동산), 3) Prepare documents: passport, proof of income/savings, Korean guarantor (if possible). **Key terms**: 전세 (lump sum deposit), 월세 (monthly rent), 보증금 (security deposit). **Canadian tip**: Start with foreigner-friendly areas like Itaewon or university districts.",
+    "i18n": {
+      "fr": {
+        "question": "Comment trouver un appartement à Séoul en tant que Canadien ?",
+        "answer": "**Étapes** : 1) Utilisez les applications Zigbang ou Peter Pan (immobilier coréen), 2) Contactez un agent immobilier (부동산), 3) Préparez les documents : passeport, preuve de revenus/épargne, garant coréen (si possible). **Termes clés** : 전세 (dépôt forfaitaire), 월세 (loyer mensuel), 보증금 (dépôt de garantie). **Conseil canadien** : Commencez par les quartiers accueillants pour les étrangers comme Itaewon ou les quartiers universitaires.",
+        "tags": ["appartement", "logement", "immobilier", "séoul", "location"]
+      }
+    },
+    "topic": "housing",
+    "language": "en",
+    "tags": [
+      "apartment",
+      "housing",
+      "real-estate",
+      "seoul",
+      "rental"
+    ],
+    "lastUpdatedKST": "2025-09-08T11:00:00+09:00",
+    "sources": [
+      {
+        "title": "Seoul Housing Guide for Foreigners",
+        "url": "https://example.seoul.go.kr/housing-guide"
+      },
+      {
+        "title": "Korea Real Estate Guide",
+        "url": "https://example.realestate.kr/foreign"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-visa-001",
+    "question": "What documents do I need for a Korean student visa from Canada?",
+    "answer": "**Required documents**: 1) University acceptance letter, 2) Financial proof (CAD$10,000+ bank statement or sponsor letter), 3) Health certificate from Canadian doctor, 4) Criminal background check (RCMP), 5) Passport photos (3.5x4.5cm), 6) Completed visa application form. **Processing time**: 5-10 business days. **Canadian tip**: Get documents apostilled if required by your university.",
+    "i18n": {
+      "fr": {
+        "question": "Quels documents me faut-il pour un visa étudiant coréen depuis le Canada ?",
+        "answer": "**Documents requis** : 1) Lettre d'acceptation de l'université, 2) Preuve financière (relevé bancaire de 10 000 $+ CA ou lettre de parrainage), 3) Certificat de santé d'un médecin canadien, 4) Vérification du casier judiciaire (GRC), 5) Photos d'identité (3,5x4,5 cm), 6) Formulaire de demande de visa rempli. **Délai de traitement** : 5-10 jours ouvrables. **Conseil canadien** : Faites apostiller les documents si votre université l'exige.",
+        "tags": ["visa-étudiant", "documents", "canada", "exigences", "demande"]
+      }
+    },
+    "topic": "visa",
+    "language": "en",
+    "tags": [
+      "student-visa",
+      "documents",
+      "canada",
+      "requirements",
+      "application"
+    ],
+    "lastUpdatedKST": "2025-09-08T08:45:00+09:00",
+    "sources": [
+      {
+        "title": "Korean Embassy in Canada - Student Visa Guide",
+        "url": "https://example.can-korea.org/visa/student"
+      },
+      {
+        "title": "Korea Immigration Service - Student Visa Requirements",
+        "url": "https://example.immigration.go.kr/student-visa"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-tips-001",
+    "question": "What should I download on my phone before arriving in Korea?",
+    "answer": "**Essential apps**: 1) **Citymapper** (subway navigation), 2) **Papago** (Naver translator - better than Google for Korean), 3) **KakaoMap** (most accurate maps), 4) **Yogiyo/Baemin** (food delivery), 5) **KakaoTaxi** (taxi booking), 6) **Coupang** (shopping/delivery). **Offline**: Download offline maps and save important addresses in Korean. **Banking**: Consider Revolut or Wise for better exchange rates.",
+    "i18n": {
+      "fr": {
+        "question": "Que dois-je télécharger sur mon téléphone avant d'arriver en Corée ?",
+        "answer": "**Applications essentielles** : 1) **Citymapper** (navigation métro), 2) **Papago** (traducteur Naver - meilleur que Google pour le coréen), 3) **KakaoMap** (cartes les plus précises), 4) **Yogiyo/Baemin** (livraison de repas), 5) **KakaoTaxi** (réservation de taxi), 6) **Coupang** (shopping/livraison). **Hors ligne** : Téléchargez des cartes hors ligne et enregistrez les adresses importantes en coréen. **Banque** : Envisagez Revolut ou Wise pour de meilleurs taux de change.",
+        "tags": ["applications", "mobile", "préparation", "essentiel", "voyage"]
+      }
+    },
+    "topic": "tips",
+    "language": "en",
+    "tags": [
+      "apps",
+      "mobile",
+      "preparation",
+      "essential",
+      "travel"
+    ],
+    "lastUpdatedKST": "2025-09-08T12:15:00+09:00",
+    "sources": [
+      {
+        "title": "Essential Apps for Korea - Expat Guide",
+        "url": "https://example.expat-guide.kr/apps"
+      },
+      {
+        "title": "Korea Tourism App Recommendations",
+        "url": "https://example.visitkorea.kr/mobile-apps"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-housing-002",
+    "question": "What's the difference between 전세 and 월세 rental systems?",
+    "answer": "**전세 (Jeonse)**: Pay large lump sum (50-80% of property value) as deposit, no monthly rent. Get full deposit back when moving out. **월세 (Wolse)**: Smaller deposit + monthly rent (similar to Canadian system). **For Canadians**: 월세 is more familiar and requires less upfront cash. 전세 offers savings if you have large capital and plan to stay 1-2 years.",
+    "i18n": {
+      "fr": {
+        "question": "Quelle est la différence entre les systèmes de location 전세 et 월세 ?",
+        "answer": "**전세 (Jeonse)** : Payez une grosse somme forfaitaire (50-80% de la valeur du bien) en guise de caution, sans loyer mensuel. Récupérez l'intégralité de la caution en partant. **월세 (Wolse)** : Caution plus petite + loyer mensuel (similaire au système canadien). **Pour les Canadiens** : 월세 est plus familier et nécessite moins de liquidités initiales. 전세 offre des économies si vous disposez d'un capital important et prévoyez de rester 1 à 2 ans.",
+        "tags": ["jeonse", "wolse", "système-de-location", "caution", "logement-coréen"]
+      }
+    },
+    "topic": "housing",
+    "language": "en",
+    "tags": [
+      "jeonse",
+      "wolse",
+      "rental-system",
+      "deposit",
+      "korean-housing"
+    ],
+    "lastUpdatedKST": "2025-09-08T13:30:00+09:00",
+    "sources": [
+      {
+        "title": "Korea Housing System Explained",
+        "url": "https://example.housing-guide.kr/jeonse-wolse"
+      },
+      {
+        "title": "Bank of Korea - Housing Finance Guide",
+        "url": "https://example.bok.or.kr/housing-finance"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-transport-002",
+    "question": "How do I get from Incheon Airport to Seoul city center?",
+    "answer": "**Best options**: 1) **Airport Railroad Express (AREX)** - ₩4,750, 43 minutes to Seoul Station, most convenient. 2) **Airport Limousine Bus** - ₹15,000, 60-90 minutes, drops at major hotels/areas. 3) **Taxi** - ₩60,000-80,000, 45-60 minutes depending on traffic. **Canadian tip**: Buy T-money card at airport and load ₩20,000 for AREX + subway connections.",
+    "i18n": {
+      "fr": {
+        "question": "Comment se rendre de l'aéroport d'Incheon au centre-ville de Séoul ?",
+        "answer": "**Meilleures options** : 1) **Airport Railroad Express (AREX)** - 4 750 ₩, 43 minutes jusqu'à la gare de Séoul, le plus pratique. 2) **Bus Limousine de l'aéroport** - 15 000 ₩, 60-90 minutes, dépose aux principaux hôtels/zones. 3) **Taxi** - 60 000-80 000 ₩, 45-60 minutes selon le trafic. **Conseil canadien** : Achetez une carte T-money à l'aéroport et chargez 20 000 ₩ pour l'AREX + les correspondances de métro.",
+        "tags": ["aéroport", "incheon", "arex", "transport", "arrivée"]
+      }
+    },
+    "topic": "transport",
+    "language": "en",
+    "tags": [
+      "airport",
+      "incheon",
+      "arex",
+      "transportation",
+      "arrival"
+    ],
+    "lastUpdatedKST": "2025-09-08T14:00:00+09:00",
+    "sources": [
+      {
+        "title": "Incheon Airport Official Transportation Guide",
+        "url": "https://example.airport.kr/transport"
+      },
+      {
+        "title": "AREX Official Schedule and Fares",
+        "url": "https://example.arex.or.kr/eng"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-living-002",
+    "question": "Can I use my Canadian credit cards in Korea?",
+    "answer": "**Yes, mostly**: Visa and Mastercard widely accepted at department stores, hotels, restaurants, and tourist areas. **Limitations**: Small vendors, traditional markets, street food often cash-only. **Tips**: 1) Notify your bank before travel, 2) Bring backup cards, 3) Withdraw cash from 7-Eleven ATMs (Global ATM service), 4) Consider Wise or Revolut for better exchange rates. **Daily cash needs**: ₩30,000-50,000 for meals and small purchases.",
+    "i18n": {
+      "fr": {
+        "question": "Puis-je utiliser mes cartes de crédit canadiennes en Corée ?",
+        "answer": "**Oui, pour la plupart** : Visa et Mastercard sont largement acceptées dans les grands magasins, hôtels, restaurants et zones touristiques. **Limites** : Petits commerçants, marchés traditionnels, nourriture de rue souvent en espèces uniquement. **Conseils** : 1) Avertissez votre banque avant de voyager, 2) Apportez des cartes de secours, 3) Retirez de l'argent aux distributeurs 7-Eleven (service ATM Global), 4) Envisagez Wise ou Revolut pour de meilleurs taux de change. **Besoins quotidiens en espèces** : 30 000-50 000 ₩ pour les repas et petits achats.",
+        "tags": ["cartes-de-crédit", "paiement", "distributeur-automatique", "banque", "argent"]
+      }
+    },
+    "topic": "living-cost",
+    "language": "en",
+    "tags": [
+      "credit-cards",
+      "payment",
+      "atm",
+      "banking",
+      "money"
+    ],
+    "lastUpdatedKST": "2025-09-08T15:00:00+09:00",
+    "sources": [
+      {
+        "title": "Bank of Korea - Foreign Card Usage Guide",
+        "url": "https://example.bok.or.kr/foreign-cards"
+      },
+      {
+        "title": "Korea Tourism Payment Methods",
+        "url": "https://example.visitkorea.kr/payment"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-tips-002",
+    "question": "What's the tipping culture like in Korea?",
+    "answer": "**No tipping required or expected** in Korea. This includes restaurants, taxis, hotels, and services. **Why**: Service charges are included in prices, and tipping can sometimes be seen as insulting. **Exceptions**: Some high-end hotels with international staff may accept tips, but it's not necessary. **Canadian adjustment**: This feels weird at first, but embrace it - service is excellent without tipping pressure.",
+    "i18n": {
+      "fr": {
+        "question": "Comment est la culture du pourboire en Corée ?",
+        "answer": "**Aucun pourboire requis ou attendu** en Corée. Cela inclut les restaurants, les taxis, les hôtels et les services. **Pourquoi** : Les frais de service sont inclus dans les prix, et donner un pourboire peut parfois être considéré comme insultant. **Exceptions** : Certains hôtels haut de gamme avec du personnel international peuvent accepter les pourboires, but ce n'est pas nécessaire. **Ajustement canadien** : Cela semble étrange au début, mais acceptez-le - le service est excellent sans la pression du pourboire.",
+        "tags": ["pourboire", "culture", "restaurants", "service", "étiquette"]
+      }
+    },
+    "topic": "tips",
+    "language": "en",
+    "tags": [
+      "tipping",
+      "culture",
+      "restaurants",
+      "service",
+      "etiquette"
+    ],
+    "lastUpdatedKST": "2025-09-08T16:00:00+09:00",
+    "sources": [
+      {
+        "title": "Korea Cultural Etiquette Guide",
+        "url": "https://example.culture-guide.kr/tipping"
+      },
+      {
+        "title": "Visit Korea - Dining Etiquette",
+        "url": "https://example.visitkorea.kr/dining-etiquette"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-housing-003",
+    "question": "Best neighborhoods in Seoul for young Canadian expats?",
+    "answer": "**Top picks**: 1) **Hongdae** - Nightlife, international crowd, affordable, university vibe. 2) **Itaewon** - Most English-friendly, diverse food, expat community. 3) **Gangnam** - Modern, convenient, expensive but professional. 4) **Seongsu** - Trendy, cafes, artsy but limited English. 5) **Yongsan** - Central location, good transport, mixed international. **Canadian comparison**: Hongdae = Montreal Plateau, Itaewon = Toronto Kensington, Gangnam = Vancouver Downtown.",
+    "i18n": {
+      "fr": {
+        "question": "Quels sont les meilleurs quartiers de Séoul pour les jeunes expatriés canadiens ?",
+        "answer": "**Meilleurs choix** : 1) **Hongdae** - Vie nocturne, foule internationale, abordable, ambiance universitaire. 2) **Itaewon** - Le plus anglophone, nourriture diversifiée, communauté d'expatriés. 3) **Gangnam** - Moderne, pratique, cher mais professionnel. 4) **Seongsu** - Tendance, cafés, artistique mais anglais limité. 5) **Yongsan** - Emplacement central, bon transport, mixte international. **Comparaison canadienne** : Hongdae = Plateau de Montréal, Itaewon = Kensington de Toronto, Gangnam = Centre-ville de Vancouver.",
+        "tags": ["quartiers", "séoul", "expatrié", "districts", "comparaison"]
+      }
+    },
+    "topic": "housing",
+    "language": "en",
+    "tags": [
+      "neighborhoods",
+      "seoul",
+      "expat",
+      "districts",
+      "comparison"
+    ],
+    "lastUpdatedKST": "2025-09-08T17:00:00+09:00",
+    "sources": [
+      {
+        "title": "Seoul Expat Neighborhood Guide",
+        "url": "https://example.expat-seoul.kr/neighborhoods"
+      },
+      {
+        "title": "Seoul Tourism District Profiles",
+        "url": "https://example.visitseoul.net/districts"
+      }
+    ],
+    "status": "Published"
+  }
+]

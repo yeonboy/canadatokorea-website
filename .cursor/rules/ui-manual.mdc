@@ -1,0 +1,28 @@
+# UI Manual Rules (Current Concept Preservation)
+
+## Buttons / Toggles
+- Use existing `voxy-button` styles for interactive toggles.
+- Do not replace with new component libraries; keep minimal DOM with CSS utility classes.
+- Toggle groups must be horizontally aligned with 12–16px gaps and wrap on small screens.
+
+## Cards
+- Keep current rounded-2xl, border-gray-200/70, shadow-md look.
+- Banner: maintain color overlay with type color + black/10 layer for readability.
+- Title sizes: list card h3 22–26px; detail page h1 30–32px.
+
+## Typography
+- Headings: bold, tight tracking; body: 15–17px with leading-8.
+- Locale i18n: prefer `t()` for UI labels; fall back to English when missing.
+
+## Layout
+- Maintain max container width `max-w-content` and 64px+ section spacing.
+- Map blocks remain within rounded containers; controls above the map use the same button styles.
+
+## Accessibility
+- Buttons must have `role`/`aria-checked` when used as toggle radios/checkboxes.
+- Map popups/text must remain readable on light theme.
+
+## Do Not
+- Do not introduce heavy UI deps or redesign component structure.
+- Do not change spacing, font sizes, or color tokens without explicit approval.
+

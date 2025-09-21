@@ -1,0 +1,73 @@
+{
+  "seoul": {
+    "id": "travel-cost-seoul-2025",
+    "city": "Seoul",
+    "currency": "KRW",
+    "exchangeRateKRWPerCAD": 1000,
+    "exchangeRateAsOf": "2025-09-08",
+    "categories": [
+      {
+        "key": "flight",
+        "label": "Flight (Round Trip from Canada)",
+        "calculationStrategy": "pick_one",
+        "calculationType": "one_time",
+        "items": [
+          { "name": "Economy", "unit": "per person", "krw": 1200000, "defaultFor": ["Budget Backpacker"], "i18n": { "fr": { "name": "Économie", "unit": "par personne" } } },
+          { "name": "Premium Economy", "unit": "per person", "krw": 1800000, "defaultFor": ["Comfort Traveler"], "i18n": { "fr": { "name": "Économie Premium", "unit": "par personne" } } },
+          { "name": "Business", "unit": "per person", "krw": 4500000, "i18n": { "fr": { "name": "Affaires", "unit": "par personne" } } }
+        ],
+        "i18n": { "fr": { "label": "Vol (Aller-retour depuis le Canada)" } }
+      },
+      {
+        "key": "accommodation",
+        "label": "Accommodation",
+        "calculationStrategy": "pick_one",
+        "calculationType": "per_day",
+        "items": [
+          { "name": "Hostel", "unit": "per night", "krw": 35000, "defaultFor": ["Budget Backpacker"], "i18n": { "fr": { "name": "Auberge de jeunesse", "unit": "par nuit" } } },
+          { "name": "Mid-range Hotel", "unit": "per night", "krw": 120000, "defaultFor": ["Comfort Traveler"], "i18n": { "fr": { "name": "Hôtel de milieu de gamme", "unit": "par nuit" } } },
+          { "name": "Luxury Hotel", "unit": "per night", "krw": 350000, "i18n": { "fr": { "name": "Hôtel de luxe", "unit": "par nuit" } } }
+        ],
+        "i18n": { "fr": { "label": "Hébergement" } }
+      },
+      {
+        "key": "food",
+        "label": "Food",
+        "calculationStrategy": "pick_one",
+        "calculationType": "per_day",
+        "items": [
+          { "name": "Mostly street food & convenience stores", "unit": "per day", "krw": 30000, "defaultFor": ["Budget Backpacker"], "i18n": { "fr": { "name": "Principalement nourriture de rue et dépanneurs", "unit": "par jour" } } },
+          { "name": "Mix of local restaurants and cafes", "unit": "per day", "krw": 70000, "defaultFor": ["Comfort Traveler"], "i18n": { "fr": { "name": "Mélange de restaurants locaux et de cafés", "unit": "par jour" } } },
+          { "name": "Fine dining and cafes", "unit": "per day", "krw": 150000, "i18n": { "fr": { "name": "Haute cuisine et cafés", "unit": "par jour" } } }
+        ],
+        "i18n": { "fr": { "label": "Nourriture" } }
+      },
+      {
+        "key": "transport",
+        "label": "Local Transport",
+        "calculationStrategy": "pick_one",
+        "calculationType": "per_day",
+        "items": [
+          { "name": "Public Transit (T-money)", "unit": "per day", "krw": 10000, "defaultFor": ["Budget Backpacker", "Comfort Traveler"], "i18n": { "fr": { "name": "Transport public (T-money)", "unit": "par jour" } } }
+        ],
+        "i18n": { "fr": { "label": "Transport Local" } }
+      },
+      {
+        "key": "activities",
+        "label": "Activities & Shopping",
+        "calculationStrategy": "pick_one",
+        "calculationType": "per_day",
+        "items": [
+          { "name": "Mainly free attractions & light shopping", "unit": "per day", "krw": 20000, "defaultFor": ["Budget Backpacker"], "i18n": { "fr": { "name": "Principalement attractions gratuites et shopping léger", "unit": "par jour" } } },
+          { "name": "Paid attractions, shows, and shopping", "unit": "per day", "krw": 80000, "defaultFor": ["Comfort Traveler"], "i18n": { "fr": { "name": "Attractions payantes, spectacles et shopping", "unit": "par jour" } } }
+        ],
+        "i18n": { "fr": { "label": "Activités & Shopping" } }
+      }
+    ],
+    "scenarios": [
+      { "name": "Budget Backpacker", "i18n": { "fr": { "name": "Routard à petit budget" } } },
+      { "name": "Comfort Traveler", "i18n": { "fr": { "name": "Voyageur Confort" } } }
+    ],
+    "lastUpdatedKST": "2025-09-08T10:00:00+09:00"
+  }
+}

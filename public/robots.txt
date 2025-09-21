@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://canadatokorea.com/sitemap.xml
+
+# Block admin and API routes (not needed for SEO)
+Disallow: /admin/
+Disallow: /review/
+Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /learn/
+Allow: /real-korea-now/
+Allow: /travel-food/
+Allow: /community/
+Allow: /k-pop/
+Allow: /tools/
+Allow: /city/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

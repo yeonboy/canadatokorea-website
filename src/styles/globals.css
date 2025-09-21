@@ -1,0 +1,438 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 캐나다 친화적 폰트 설정 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply text-gray-900;
+    background-color: #eeeeee;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+  
+  /* 한국어 텍스트용 폰트 */
+  .font-korean {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  }
+  
+  /* 접근성 개선 */
+  *:focus {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+  
+  /* 스크롤바 스타일링 */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+@layer components {
+  /* Uiverse.io button style (ke1221) */
+  .uiverse-button {
+    color: #090909;
+    padding: 0.7em 1.7em;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    cursor: pointer;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  }
+
+  .uiverse-button:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+  }
+
+  .uiverse-button--active {
+    background: #f3f4f6; /* light active */
+    box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+  }
+
+  /* Uiverse.io Voxybuns button */
+  .voxy-button {
+    --button_radius: 0.75em;
+    --button_color: #e8e8e8;
+    --button_outline_color: #000000;
+    font-size: 17px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--button_radius);
+    background: var(--button_outline_color);
+    padding: 0; /* outer wrapper box */
+  }
+  .voxy-button .button_top {
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid var(--button_outline_color);
+    border-radius: var(--button_radius);
+    padding: 0.6em 1.2em;
+    background: var(--button_color);
+    color: var(--button_outline_color);
+    transform: translateY(-0.22em);
+    transition: transform 0.1s ease;
+  }
+  .voxy-button:hover .button_top {
+    transform: translateY(-0.33em);
+  }
+  .voxy-button:active .button_top,
+  .voxy-button[aria-checked="true"] .button_top,
+  .voxy-button.voxy-button--active .button_top {
+    transform: translateY(0);
+  }
+  /* Central search input (Uiverse style) */
+  .input {
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 1em;
+    background-color: #e6e6e6; /* brighter */
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.2);
+    transition: 300ms ease-in-out;
+  }
+
+  .input:focus {
+    background-color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 10px 10px 60px #cfcfcf, -10px -10px 60px #ffffff;
+  }
+
+  /* Home nav card (simple) */
+  .nav-card {
+    width: 190px;
+    height: 254px;
+    border-radius: 30px;
+    background: lightgrey;
+    box-shadow:
+      rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset,
+      rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1f2937; /* gray-800 */
+    font-family: 'Caprasimo', 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    user-select: none;
+  }
+
+  /* Door card hover open animation */
+  .door-card {
+    position: relative;
+    display: block;
+    color: #000000;
+    transition: color 300ms ease;
+  }
+  /* 두 상태 그룹 토글: 기본(닫힘)에서 호버(열림)으로 전환 */
+  .door-state-open { opacity: 0; transition: opacity 250ms ease; }
+  .door-state-closed { opacity: 1; transition: opacity 250ms ease; }
+  .door-card:hover .door-state-open { opacity: 1; }
+  .door-card:hover .door-state-closed { opacity: 0; }
+  .door-floor {
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+  .door-card:hover {
+    color: #6b7280; /* gray-500 */
+  }
+  .door-card:hover .door-floor {
+    opacity: 1;
+  }
+  /* 버튼 스타일 */
+  .btn-primary {
+    @apply px-4 py-2 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-100 text-gray-900 font-medium rounded-lg hover:bg-gray-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors;
+  }
+  
+  /* 카드 스타일 */
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow;
+  }
+  
+  /* 입력 필드 스타일 */
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors;
+  }
+  
+  /* 링크 스타일 */
+  .link-primary {
+    @apply text-primary-600 hover:text-primary-700 font-medium transition-colors;
+  }
+  
+  /* 배지 스타일 */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-primary {
+    @apply badge bg-primary-100 text-primary-800;
+  }
+  
+  .badge-secondary {
+    @apply badge bg-gray-100 text-gray-800;
+  }
+  
+  .badge-success {
+    @apply badge bg-green-100 text-green-800;
+  }
+  
+  .badge-warning {
+    @apply badge bg-yellow-100 text-yellow-800;
+  }
+  
+  .badge-error {
+    @apply badge bg-red-100 text-red-800;
+  }
+}
+
+@layer utilities {
+  /* Weather background effects */
+  .weather-sun {
+    background-image: radial-gradient(closest-side, rgba(255, 223, 0, 0.15), rgba(255, 223, 0, 0) 70%);
+  }
+  /* 지역(컴포넌트) 한정 날씨 오버레이: 맵 카드 내부에서만 사용 */
+  .weather-rkn-local::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    /* 기본은 비효과와 구름을 약하게 혼합 */
+    background-image: 
+      radial-gradient(rgba(255,255,255,0.08) 1px, transparent 2px),
+      linear-gradient(180deg, rgba(0,0,0,0.06) 50%, rgba(0,0,0,0) 50%);
+    background-size: 6px 6px, 2px 18px;
+    transform: skewX(-8deg);
+  }
+  .weather-clouds::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(180deg, rgba(200,200,200,0.15), rgba(200,200,200,0.15) 8px, transparent 8px, transparent 20px);
+  }
+  .weather-rain::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none;
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0) 50%);
+    background-size: 2px 18px; transform: skewX(-10deg);
+  }
+  .weather-snow::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none;
+    background-image: radial-gradient(#fff 1px, rgba(255,255,255,0) 2px);
+    background-size: 3px 3px; opacity: 0.6;
+  }
+  /* 텍스트 그라데이션 */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent;
+  }
+  
+  /* 한국어 텍스트 최적화 */
+  .text-korean {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    word-break: keep-all;
+    line-height: 1.7;
+  }
+  
+  /* 애니메이션 유틸리티 */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  /* 커스텀 스크롤 */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+  }
+  
+  /* 반응형 컨테이너 */
+  .container-responsive {
+    @apply w-full max-w-content mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* 프로즈 스타일 (마크다운 콘텐츠용) */
+  .prose-canada {
+    @apply prose prose-gray max-w-none;
+  }
+  
+  .prose-canada h1 {
+    @apply text-3xl font-bold text-gray-900 mb-6;
+  }
+  
+  .prose-canada h2 {
+    @apply text-2xl font-semibold text-gray-900 mt-8 mb-4;
+  }
+  
+  .prose-canada h3 {
+    @apply text-xl font-semibold text-gray-900 mt-6 mb-3;
+  }
+  
+  .prose-canada p {
+    @apply text-gray-700 leading-relaxed mb-4;
+  }
+  
+  .prose-canada a {
+    @apply text-primary-600 hover:text-primary-700 no-underline font-medium;
+  }
+  
+  .prose-canada ul {
+    @apply list-disc ml-6 mb-4 space-y-2;
+  }
+  
+  .prose-canada ol {
+    @apply list-decimal ml-6 mb-4 space-y-2;
+  }
+  
+  .prose-canada li {
+    @apply text-gray-700;
+  }
+  
+  .prose-canada blockquote {
+    @apply border-l-4 border-primary-200 pl-4 italic text-gray-600 my-6;
+  }
+  
+  .prose-canada code {
+    @apply bg-gray-100 text-gray-800 px-1 py-0.5 rounded text-sm font-mono;
+  }
+  
+  .prose-canada pre {
+    @apply bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono mb-4;
+  }
+}
+
+/* 다크 모드 지원 (추후) */
+@media (prefers-color-scheme: dark) {
+  /* 다크 모드 스타일은 추후 구현 */
+}
+
+/* 프린트 스타일 */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply text-black bg-white;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+    @apply text-sm text-gray-600;
+  }
+}
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    @apply border-2 border-blue-700;
+  }
+  
+  .card {
+    @apply border-2 border-gray-400;
+  }
+}
+
+/* 애니메이션 감소 모드 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+button {
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
+ outline: none;
+ border: 0;
+ vertical-align: middle;
+ text-decoration: none;
+ font-family: inherit;
+ font-size: 15px;
+}
+
+button.learn-more {
+ font-weight: 600;
+ color: #382b22;
+ text-transform: uppercase;
+ padding: 1.25em 2em;
+ background: #fff0f0;
+ border: 2px solid #b18597;
+ border-radius: 0.75em;
+ -webkit-transform-style: preserve-3d;
+ transform-style: preserve-3d;
+ -webkit-transition: background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+ transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button.learn-more::before {
+ position: absolute;
+ content: '';
+ width: 100%;
+ height: 100%;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background: #f9c4d2;
+ border-radius: inherit;
+ -webkit-box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+ box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+ -webkit-transform: translate3d(0, 0.75em, -1em);
+ transform: translate3d(0, 0.75em, -1em);
+ transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button.learn-more:hover {
+ background: #ffe9e9;
+ -webkit-transform: translate(0, 0.25em);
+ transform: translate(0, 0.25em);
+}
+
+button.learn-more:hover::before {
+ -webkit-box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+ box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+ -webkit-transform: translate3d(0, 0.5em, -1em);
+ transform: translate3d(0, 0.5em, -1em);
+}
+
+button.learn-more:active {
+ background: #ffe9e9;
+ -webkit-transform: translate(0em, 0.75em);
+ transform: translate(0em, 0.75em);
+}
+
+button.learn-more:active::before {
+ -webkit-box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+ box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+ -webkit-transform: translate3d(0, 0, -1em);
+ transform: translate3d(0, 0, -1em);
+}

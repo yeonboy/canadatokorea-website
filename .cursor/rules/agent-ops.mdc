@@ -1,0 +1,51 @@
+---
+alwaysApply: true
+description: 작업 사전점검·전 과정 규칙 준수·단계별 진행보고 규칙 (에이전트 운영 표준)
+---
+
+# 에이전트 운영 표준 (Agent Ops Standard)
+
+본 규칙은 모든 작업 시작 전·중·후에 적용되는 체크리스트와 보고 규칙입니다. 커서 에이전트는 매 번 작업 시 다음을 준수합니다.
+
+## 1) 사전 점검 (Pre-flight)
+- 커서 룰 전체 및 최근 변경사항 검토: 
+  - [.cursor/rules/canada-ui-ux.mdc](mdc:.cursor/rules/canada-ui-ux.mdc)
+  - [.cursor/rules/korean-content-strategy.mdc](mdc:.cursor/rules/korean-content-strategy.mdc)
+  - [.cursor/rules/aws-deployment.mdc](mdc:.cursor/rules/aws-deployment.mdc)
+  - 본 문서([agent-ops.mdc](mdc:.cursor/rules/agent-ops.mdc))
+- 핵심 기획/설계 문서 최신본 확인:
+  - [PROJECT_MASTER_PLAN.md](mdc:PROJECT_MASTER_PLAN.md)
+  - [IMPLEMENTATION_ROADMAP.md](mdc:IMPLEMENTATION_ROADMAP.md)
+  - [CONTENT_AUTOMATION_SYSTEM.md](mdc:CONTENT_AUTOMATION_SYSTEM.md)
+  - [README.md](mdc:README.md)
+- 변경 의도 정리: 영향 범위(파일/룰/기획), 리스크, 롤백 포인트 정의
+
+## 2) 진행 단계 (Stages)와 산출물
+- Stage 0: Discovery/설계
+  - 산출물: 변경 요약, 영향 분석, 승인 필요 항목 목록
+- Stage 1: 규칙/문서 업데이트
+  - 산출물: 편집 파일 목록과 변경 요약, 일치성 점검(룰↔문서)
+- Stage 2: 코드/스크립트 반영
+  - 산출물: 편집 파일 목록, 실행 방법, 예상 영향
+- Stage 3: 검증
+  - 산출물: lint/형식 검사, 링크/참조 유효성, 빌드·배포 전 점검 체크리스트
+- Stage 4: 보고/인수
+  - 산출물: 변경 하이라이트, 다음 단계 제안, 필요 승인/사용자 액션 목록
+
+## 3) 사용자 승인(필수) 항목
+- AWS 리소스 생성/변경(계정 가입, Route53, S3, CloudFront, ACM)
+- 도메인 구입/이전, 과금 위험이 있는 설정 변경
+- 데이터 소싱 신규 추가(법/정책 민감 소스), 개인정보 수집
+- 광고 정책/배치 변경(민감 섹션 상단 비노출 예외 포함)
+
+## 4) 보고 포맷 (단계별)
+- 체크리스트 통과/보류 항목 표시
+- 사용자 액션 필요 리스트(예: AWS 가입, 키 발급, 최종 승인)
+- 리스크/완화, 예상 일정(ETA)
+
+## 5) 품질 기준
+- 유료 API/도구 금지, 로컬 LLM(gpt-oss-20b) 및 공개 RSS/오픈데이터만 사용
+- KST 기준 Last updated, 출처 2개 이상, 링크/요약/출처 크기 최소화
+- 민감 섹션 상단 광고 비노출, 접근성 WCAG 2.1 AA, 성능 최적화 준수
+
+본 규칙은 항상 적용됩니다. 변경 시 사전 합의 후 업데이트합니다.

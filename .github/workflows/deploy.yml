@@ -1,0 +1,163 @@
+name: Deploy to AWS S3 and CloudFront
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # 매일 KST 오전 9시 (UTC 00:00)에 데이터 수집 및 배포
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+  S3_BUCKET: ca-korea-website
+  CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+  NODE_VERSION: '18'
+
+jobs:
+  collect-data:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    
+    - name: Install Dependencies
+      run: npm ci
+    
+    - name: Collect Daily Data
+      env:
+        SEOUL_TOPIS_API_KEY: ${{ secrets.SEOUL_TOPIS_API_KEY }}
+        SEOUL_OPENDATA_API_KEY: ${{ secrets.SEOUL_OPENDATA_API_KEY }}
+      run: |
+        node scripts/collect-daily-data.js
+    
+    - name: Commit Data Updates
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add content/data/ logs/
+        git diff --staged --quiet || git commit -m "Daily data update $(date +'%Y-%m-%d %H:%M:%S KST')"
+        git push
+
+  build-deploy:
+    runs-on: ubuntu-latest
+    needs: [collect-data]
+    if: always() && (needs.collect-data.result == 'success' || needs.collect-data.result == 'skipped')
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        ref: main # 데이터 업데이트 후 최신 커밋 사용
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    
+    - name: Install Dependencies
+      run: npm ci
+    
+    - name: Type Check
+      run: npm run type-check
+    
+    - name: Lint
+      run: npm run lint
+    
+    - name: Build Website
+      env:
+        NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
+        NEXT_PUBLIC_SITE_URL: https://ca.korea.com
+      run: |
+        npm run build
+    
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+    
+    - name: Deploy to S3
+      run: |
+        # 빌드된 파일을 S3에 동기화
+        aws s3 sync ./out s3://${{ env.S3_BUCKET }} \
+          --delete \
+          --cache-control "public, max-age=3600" \
+          --exclude "*.html" \
+          --exclude "*.xml"
+        
+        # HTML 파일은 짧은 캐시
+        aws s3 sync ./out s3://${{ env.S3_BUCKET }} \
+          --exclude "*" \
+          --include "*.html" \
+          --include "*.xml" \
+          --cache-control "public, max-age=300"
+    
+    - name: Invalidate CloudFront Cache
+      run: |
+        aws cloudfront create-invalidation \
+          --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
+          --paths "/*"
+    
+    - name: Submit Sitemap to Search Console
+      env:
+        GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+      run: |
+        # 실제로는 Google Search Console API 사용
+        echo "Sitemap submission would happen here"
+    
+    - name: Health Check
+      run: |
+        # 배포 후 사이트 접근 가능 여부 확인
+        curl -f https://ca.korea.com/health || exit 1
+    
+    - name: Send Notification
+      if: failure()
+      run: |
+        # 실패 시 알림 (Slack webhook 등)
+        echo "Deployment failed notification would be sent here"
+
+  validate-content:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    
+    - name: Install Dependencies
+      run: npm ci
+    
+    - name: Validate Content Schema
+      run: |
+        node scripts/validate-content.js
+    
+    - name: Check Links
+      run: |
+        # 링크 유효성 검사
+        node scripts/check-links.js
+    
+    - name: SEO Analysis
+      run: |
+        # SEO 점수 체크
+        node scripts/seo-analysis.js

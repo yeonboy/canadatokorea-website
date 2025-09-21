@@ -1,0 +1,14 @@
+{
+  "id": "qna-2025-0908-0001",
+  "question": "How much does a Canadian student spend monthly in Seoul?",
+  "answer": "A lean monthly budget starts at KRW 1,200,000–1,600,000: rent (off-campus studio) KRW 700k–900k, food KRW 300k–400k, transport KRW 60k–80k, mobile KRW 30k–40k, utilities KRW 80k–120k. Always check exchange rates and university housing options.",
+  "topic": "living-cost",
+  "language": "en",
+  "tags": ["budget", "student", "seoul"],
+  "lastUpdatedKST": "2025-09-08T10:10:00+09:00",
+  "sources": [
+    {"title": "Seoul Open Data Portal - Living Cost Survey", "url": "https://data.seoul.go.kr/"},
+    {"title": "University Housing Announcement", "url": "https://example.univ.kr/housing"}
+  ],
+  "status": "Approved"
+}

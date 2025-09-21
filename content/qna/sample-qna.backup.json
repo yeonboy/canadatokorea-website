@@ -1,0 +1,262 @@
+[
+  {
+    "id": "qna-living-001",
+    "question": "How much money should I budget per month as a Canadian student in Seoul?",
+    "answer": "For a basic student lifestyle in Seoul, budget CAD$1,200-1,600 (₩1.2-1.6 million) monthly. Breakdown: Rent ₩600-900k (goshiwon to studio), Food ₩300-400k, Transport ₩60-80k, Mobile ₩30-40k, Utilities ₩80-120k, Misc ₩50-100k. Consider university housing first - often cheaper and includes utilities.",
+    "topic": "living-cost",
+    "language": "en",
+    "tags": [
+      "budget",
+      "student",
+      "seoul",
+      "monthly-expenses",
+      "canada"
+    ],
+    "lastUpdatedKST": "2025-09-08T10:10:00+09:00",
+    "sources": [
+      {
+        "title": "Seoul Open Data Portal - Living Cost Survey 2024",
+        "url": "https://data.seoul.go.kr/dataList/OA-15245"
+      },
+      {
+        "title": "Study in Korea - Budget Guide",
+        "url": "https://studyinkorea.go.kr/budget"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-transport-001",
+    "question": "What's the best subway app for foreigners in Seoul?",
+    "answer": "Top 3 recommendations: 1) **Citymapper** - Best overall with English interface, real-time delays, and step-by-step directions. 2) **Subway Map** - Simple, works offline, clean design. 3) **KakaoMap** - Most accurate but in Korean, use as backup. Download all three, use Citymapper as primary.",
+    "topic": "transport",
+    "language": "en",
+    "tags": [
+      "subway",
+      "apps",
+      "navigation",
+      "seoul",
+      "english"
+    ],
+    "lastUpdatedKST": "2025-09-08T09:30:00+09:00",
+    "sources": [
+      {
+        "title": "Seoul Metro Official App Recommendations",
+        "url": "https://example.metro.seoul.kr/eng/apps"
+      },
+      {
+        "title": "Expat Seoul Transportation Guide",
+        "url": "https://example.expat-guide.kr/transport"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-housing-001",
+    "question": "How do I find an apartment in Seoul as a Canadian?",
+    "answer": "**Steps**: 1) Use Zigbang or Peter Pan apps (Korean real estate), 2) Contact real estate agent (부동산), 3) Prepare documents: passport, proof of income/savings, Korean guarantor (if possible). **Key terms**: 전세 (lump sum deposit), 월세 (monthly rent), 보증금 (security deposit). **Canadian tip**: Start with foreigner-friendly areas like Itaewon or university districts.",
+    "topic": "housing",
+    "language": "en",
+    "tags": [
+      "apartment",
+      "housing",
+      "real-estate",
+      "seoul",
+      "rental"
+    ],
+    "lastUpdatedKST": "2025-09-08T11:00:00+09:00",
+    "sources": [
+      {
+        "title": "Seoul Housing Guide for Foreigners",
+        "url": "https://example.seoul.go.kr/housing-guide"
+      },
+      {
+        "title": "Korea Real Estate Guide",
+        "url": "https://example.realestate.kr/foreign"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-visa-001",
+    "question": "What documents do I need for a Korean student visa from Canada?",
+    "answer": "**Required documents**: 1) University acceptance letter, 2) Financial proof (CAD$10,000+ bank statement or sponsor letter), 3) Health certificate from Canadian doctor, 4) Criminal background check (RCMP), 5) Passport photos (3.5x4.5cm), 6) Completed visa application form. **Processing time**: 5-10 business days. **Canadian tip**: Get documents apostilled if required by your university.",
+    "topic": "visa",
+    "language": "en",
+    "tags": [
+      "student-visa",
+      "documents",
+      "canada",
+      "requirements",
+      "application"
+    ],
+    "lastUpdatedKST": "2025-09-08T08:45:00+09:00",
+    "sources": [
+      {
+        "title": "Korean Embassy in Canada - Student Visa Guide",
+        "url": "https://example.can-korea.org/visa/student"
+      },
+      {
+        "title": "Korea Immigration Service - Student Visa Requirements",
+        "url": "https://example.immigration.go.kr/student-visa"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-tips-001",
+    "question": "What should I download on my phone before arriving in Korea?",
+    "answer": "**Essential apps**: 1) **Citymapper** (subway navigation), 2) **Papago** (Naver translator - better than Google for Korean), 3) **KakaoMap** (most accurate maps), 4) **Yogiyo/Baemin** (food delivery), 5) **KakaoTaxi** (taxi booking), 6) **Coupang** (shopping/delivery). **Offline**: Download offline maps and save important addresses in Korean. **Banking**: Consider Revolut or Wise for better exchange rates.",
+    "topic": "tips",
+    "language": "en",
+    "tags": [
+      "apps",
+      "mobile",
+      "preparation",
+      "essential",
+      "travel"
+    ],
+    "lastUpdatedKST": "2025-09-08T12:15:00+09:00",
+    "sources": [
+      {
+        "title": "Essential Apps for Korea - Expat Guide",
+        "url": "https://example.expat-guide.kr/apps"
+      },
+      {
+        "title": "Korea Tourism App Recommendations",
+        "url": "https://example.visitkorea.kr/mobile-apps"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-housing-002",
+    "question": "What's the difference between 전세 and 월세 rental systems?",
+    "answer": "**전세 (Jeonse)**: Pay large lump sum (50-80% of property value) as deposit, no monthly rent. Get full deposit back when moving out. **월세 (Wolse)**: Smaller deposit + monthly rent (similar to Canadian system). **For Canadians**: 월세 is more familiar and requires less upfront cash. 전세 offers savings if you have large capital and plan to stay 1-2 years.",
+    "topic": "housing",
+    "language": "en",
+    "tags": [
+      "jeonse",
+      "wolse",
+      "rental-system",
+      "deposit",
+      "korean-housing"
+    ],
+    "lastUpdatedKST": "2025-09-08T13:30:00+09:00",
+    "sources": [
+      {
+        "title": "Korea Housing System Explained",
+        "url": "https://example.housing-guide.kr/jeonse-wolse"
+      },
+      {
+        "title": "Bank of Korea - Housing Finance Guide",
+        "url": "https://example.bok.or.kr/housing-finance"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-transport-002",
+    "question": "How do I get from Incheon Airport to Seoul city center?",
+    "answer": "**Best options**: 1) **Airport Railroad Express (AREX)** - ₩4,750, 43 minutes to Seoul Station, most convenient. 2) **Airport Limousine Bus** - ₹15,000, 60-90 minutes, drops at major hotels/areas. 3) **Taxi** - ₩60,000-80,000, 45-60 minutes depending on traffic. **Canadian tip**: Buy T-money card at airport and load ₩20,000 for AREX + subway connections.",
+    "topic": "transport",
+    "language": "en",
+    "tags": [
+      "airport",
+      "incheon",
+      "arex",
+      "transportation",
+      "arrival"
+    ],
+    "lastUpdatedKST": "2025-09-08T14:00:00+09:00",
+    "sources": [
+      {
+        "title": "Incheon Airport Official Transportation Guide",
+        "url": "https://example.airport.kr/transport"
+      },
+      {
+        "title": "AREX Official Schedule and Fares",
+        "url": "https://example.arex.or.kr/eng"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-living-002",
+    "question": "Can I use my Canadian credit cards in Korea?",
+    "answer": "**Yes, mostly**: Visa and Mastercard widely accepted at department stores, hotels, restaurants, and tourist areas. **Limitations**: Small vendors, traditional markets, street food often cash-only. **Tips**: 1) Notify your bank before travel, 2) Bring backup cards, 3) Withdraw cash from 7-Eleven ATMs (Global ATM service), 4) Consider Wise or Revolut for better exchange rates. **Daily cash needs**: ₩30,000-50,000 for meals and small purchases.",
+    "topic": "living-cost",
+    "language": "en",
+    "tags": [
+      "credit-cards",
+      "payment",
+      "atm",
+      "banking",
+      "money"
+    ],
+    "lastUpdatedKST": "2025-09-08T15:00:00+09:00",
+    "sources": [
+      {
+        "title": "Bank of Korea - Foreign Card Usage Guide",
+        "url": "https://example.bok.or.kr/foreign-cards"
+      },
+      {
+        "title": "Korea Tourism Payment Methods",
+        "url": "https://example.visitkorea.kr/payment"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-tips-002",
+    "question": "What's the tipping culture like in Korea?",
+    "answer": "**No tipping required or expected** in Korea. This includes restaurants, taxis, hotels, and services. **Why**: Service charges are included in prices, and tipping can sometimes be seen as insulting. **Exceptions**: Some high-end hotels with international staff may accept tips, but it's not necessary. **Canadian adjustment**: This feels weird at first, but embrace it - service is excellent without tipping pressure.",
+    "topic": "tips",
+    "language": "en",
+    "tags": [
+      "tipping",
+      "culture",
+      "restaurants",
+      "service",
+      "etiquette"
+    ],
+    "lastUpdatedKST": "2025-09-08T16:00:00+09:00",
+    "sources": [
+      {
+        "title": "Korea Cultural Etiquette Guide",
+        "url": "https://example.culture-guide.kr/tipping"
+      },
+      {
+        "title": "Visit Korea - Dining Etiquette",
+        "url": "https://example.visitkorea.kr/dining-etiquette"
+      }
+    ],
+    "status": "Published"
+  },
+  {
+    "id": "qna-housing-003",
+    "question": "Best neighborhoods in Seoul for young Canadian expats?",
+    "answer": "**Top picks**: 1) **Hongdae** - Nightlife, international crowd, affordable, university vibe. 2) **Itaewon** - Most English-friendly, diverse food, expat community. 3) **Gangnam** - Modern, convenient, expensive but professional. 4) **Seongsu** - Trendy, cafes, artsy but limited English. 5) **Yongsan** - Central location, good transport, mixed international. **Canadian comparison**: Hongdae = Montreal Plateau, Itaewon = Toronto Kensington, Gangnam = Vancouver Downtown.",
+    "topic": "housing",
+    "language": "en",
+    "tags": [
+      "neighborhoods",
+      "seoul",
+      "expat",
+      "districts",
+      "comparison"
+    ],
+    "lastUpdatedKST": "2025-09-08T17:00:00+09:00",
+    "sources": [
+      {
+        "title": "Seoul Expat Neighborhood Guide",
+        "url": "https://example.expat-seoul.kr/neighborhoods"
+      },
+      {
+        "title": "Seoul Tourism District Profiles",
+        "url": "https://example.visitseoul.net/districts"
+      }
+    ],
+    "status": "Published"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Source",
+  "type": "object",
+  "required": ["id", "type", "title", "url", "publisher"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "enum": ["rss", "opendata", "openapi", "official-page"] },
+    "title": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "publisher": { "type": "string" },
+    "license": { "type": "string" },
+    "notes": { "type": "string" },
+    "lastFetchedAt": { "type": "string", "format": "date-time" }
+  }
+}

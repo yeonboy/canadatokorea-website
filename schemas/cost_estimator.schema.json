@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CostEstimator",
+  "type": "object",
+  "required": ["id", "city", "currency", "exchangeRateKRWPerCAD", "categories", "lastUpdatedKST"],
+  "properties": {
+    "id": { "type": "string" },
+    "city": { "type": "string", "enum": ["Seoul", "Busan", "Incheon", "Daejeon", "Daegu", "Gwangju", "Jeju"] },
+    "currency": { "type": "string", "enum": ["CAD", "KRW"] },
+    "exchangeRateKRWPerCAD": { "type": "number", "minimum": 100 
+    },
+    "exchangeRateAsOf": { "type": "string", "format": "date" },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "label", "items"],
+        "properties": {
+          "key": { "type": "string", "enum": ["food", "transport", "rent", "utilities", "mobile", "misc"] },
+          "label": { "type": "string" },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "unit", "krw"],
+              "properties": {
+                "name": { "type": "string" },
+                "unit": { "type": "string" },
+                "krw": { "type": "number", "minimum": 0 },
+                "cad": { "type": "number", "minimum": 0 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "weights"],
+        "properties": {
+          "name": { "type": "string" },
+          "weights": {
+            "type": "object",
+            "properties": {
+              "food": { "type": "number", "minimum": 0, "maximum": 1 },
+              "transport": { "type": "number", "minimum": 0, "maximum": 1 },
+              "rent": { "type": "number", "minimum": 0, "maximum": 1 },
+              "utilities": { "type": "number", "minimum": 0, "maximum": 1 },
+              "mobile": { "type": "number", "minimum": 0, "maximum": 1 },
+              "misc": { "type": "number", "minimum": 0, "maximum": 1 }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "lastUpdatedKST": { "type": "string", "format": "date-time" }
+  }
+}

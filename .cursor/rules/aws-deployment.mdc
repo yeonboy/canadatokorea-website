@@ -1,0 +1,283 @@
+---
+globs: *.js,*.ts,*.json,*.yml,*.yaml
+description: AWS S3 + CloudFront 정적 웹사이트 배포 및 자동화 가이드라인
+---
+
+# AWS S3 + CloudFront 배포 가이드라인
+
+## 아키텍처 개요
+
+### 1. 핵심 구성 요소
+- **S3 Bucket**: 정적 웹사이트 파일 호스팅
+- **CloudFront**: CDN으로 전 세계 빠른 콘텐츠 전송
+- **Route 53**: DNS 관리 및 도메인 연결
+- **Certificate Manager**: SSL/TLS 인증서 관리
+- **GitHub Actions**: CI/CD 파이프라인
+- **MCP Admin (무료 플랜)**: 에디터 승인·큐레이션·스케줄링용 관리자 페이지 (정적/서버리스)
+
+### 2. 보안 및 성능
+- HTTPS 강제 적용
+- S3 bucket은 private 설정, CloudFront를 통해서만 접근
+- Gzip/Brotli 압축 활성화
+- 브라우저 캐싱 최적화
+- 관리자 경로는 Basic Auth 또는 CloudFront Function Gate (무료)
+
+## S3 버킷 설정
+
+### 1. 버킷 생성 및 구성
+```json
+{
+  "bucketName": "ca-korea-website",
+  "region": "us-east-1",
+  "versioning": "Enabled",
+  "publicAccess": "Blocked",
+  "staticWebsiteHosting": {
+    "indexDocument": "index.html",
+    "errorDocument": "404.html"
+  }
+}
+```
+
+### 2. 버킷 정책
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowCloudFrontServicePrincipalReadOnly",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "cloudfront.amazonaws.com"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::ca-korea-website/*",
+      "Condition": {
+        "StringEquals": {
+          "AWS:SourceArn": "arn:aws:cloudfront::ACCOUNT-ID:distribution/DISTRIBUTION-ID"
+        }
+      }
+    }
+  ]
+}
+```
+
+## CloudFront 배포 설정
+
+### 1. 배포 구성
+```javascript
+const cloudFrontConfig = {
+  origins: [{
+    domainName: 'ca-korea-website.s3.us-east-1.amazonaws.com',
+    originAccessControlId: 'OAC-ID'
+  }],
+  defaultCacheBehavior: {
+    viewerProtocolPolicy: 'redirect-to-https',
+    compress: true,
+    cachePolicyId: 'MANAGED-CACHING-OPTIMIZED'
+  },
+  customErrorPages: [
+    {
+      errorCode: 404,
+      responsePagePath: '/404.html',
+      responseCode: 404
+    }
+  ]
+};
+```
+
+### 2. 캐시 정책
+- **HTML 파일**: 짧은 TTL (1시간)
+- **CSS/JS 파일**: 긴 TTL (1년), 버전 해시 사용
+- **이미지 파일**: 중간 TTL (1주일)
+- **동적 콘텐츠**: 캐시 비활성화
+
+## GitHub Actions CI/CD (유료 API 의존 금지)
+
+### 1. 워크플로우 파일 (.github/workflows/deploy.yml)
+```yaml
+name: Deploy to AWS S3 and CloudFront
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  AWS_REGION: us-east-1
+  S3_BUCKET: ca-korea-website
+  CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+    
+    - name: Sync to S3
+      run: |
+        aws s3 sync ./dist s3://${{ env.S3_BUCKET }} --delete
+    
+    - name: Invalidate CloudFront
+      run: |
+        aws cloudfront create-invalidation \
+          --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
+          --paths "/*"
+```
+
+### 2. 환경 변수 설정
+- `AWS_ACCESS_KEY_ID`: AWS 액세스 키
+- `AWS_SECRET_ACCESS_KEY`: AWS 시크릿 키
+- `CLOUDFRONT_DISTRIBUTION_ID`: CloudFront 배포 ID
+
+## 성능 최적화
+
+### 1. 파일 압축 및 최적화
+```javascript
+// 빌드 시 파일 최적화
+const optimization = {
+  images: {
+    formats: ['webp', 'avif'],
+    quality: 80,
+    lazyLoading: true
+  },
+  css: {
+    minify: true,
+    purge: true
+  },
+  javascript: {
+    minify: true,
+    treeshaking: true
+  }
+};
+```
+
+### 2. 캐시 전략
+```javascript
+// 파일별 캐시 헤더 설정
+const cacheHeaders = {
+  'text/html': 'max-age=3600', // 1시간
+  'text/css': 'max-age=31536000', // 1년
+  'application/javascript': 'max-age=31536000', // 1년
+  'image/*': 'max-age=604800' // 1주일
+};
+```
+
+## 모니터링 및 로깅
+
+### 1. CloudWatch 메트릭
+- 요청 수 및 오류율 모니터링
+- 캐시 적중률 추적
+- 원본 서버 응답 시간 측정
+
+### 2. 로그 분석
+```javascript
+// CloudFront 로그 분석을 위한 설정
+const loggingConfig = {
+  enabled: true,
+  bucket: 'ca-korea-logs',
+  prefix: 'cloudfront-logs/',
+  cookieLogging: false,
+  includeCookies: false
+};
+```
+
+## 보안 설정
+
+### 1. 보안 헤더
+```javascript
+// CloudFront Functions를 통한 보안 헤더 추가
+function handler(event) {
+  var response = event.response;
+  var headers = response.headers;
+  
+  headers['strict-transport-security'] = { value: 'max-age=63072000' };
+  headers['x-content-type-options'] = { value: 'nosniff' };
+  headers['x-frame-options'] = { value: 'DENY' };
+  headers['x-xss-protection'] = { value: '1; mode=block' };
+  headers['content-security-policy'] = { 
+    value: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src fonts.gstatic.com; img-src 'self' data:; connect-src 'self';" 
+  };
+  
+  return response;
+}
+```
+
+### 2. WAF 설정 (선택사항)
+- DDoS 공격 방어
+- 악성 봇 차단
+- 지역별 접근 제한
+- 관리자 경로 접근 IP 제한(선택)
+
+## 비용 최적화
+
+### 1. S3 스토리지 클래스
+- 자주 접근하지 않는 파일: IA (Infrequent Access)
+- 아카이브 파일: Glacier
+
+### 2. CloudFront 가격 클래스
+- 캐나다/미국 중심: Price Class 100
+- 전 세계 대상: Price Class All
+
+### 3. 모니터링 및 알림
+```yaml
+# CloudWatch 알림 설정
+CostAlert:
+  Type: AWS::CloudWatch::Alarm
+  Properties:
+    AlarmName: HighCostAlert
+    MetricName: EstimatedCharges
+    Threshold: 50
+    ComparisonOperator: GreaterThanThreshold
+```
+
+## 도메인 및 SSL 설정
+
+### 1. Route 53 설정
+```json
+{
+  "hostedZone": "ca.korea.com",
+  "records": [
+    {
+      "name": "ca.korea.com",
+      "type": "A",
+      "alias": {
+        "dnsName": "d123456789.cloudfront.net"
+      }
+    },
+    {
+      "name": "www.ca.korea.com",
+      "type": "CNAME",
+      "value": "ca.korea.com"
+    }
+  ]
+}
+```
+
+### 2. SSL 인증서
+- AWS Certificate Manager 사용
+- 자동 갱신 설정
+- 와일드카드 인증서 권장
+
+이 가이드라인을 따라 안정적이고 성능이 우수한 정적 웹사이트를 구축하세요.

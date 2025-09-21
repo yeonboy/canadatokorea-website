@@ -1,0 +1,24 @@
+{
+  "id": "post-2025-0908-0001",
+  "title": "Seoul Pop-up Calendar: What Canadians Should Not Miss in September",
+  "slug": "seoul-pop-up-calendar-september",
+  "category": "real-korea-now",
+  "language": "en",
+  "tags": ["seoul", "popup", "events", "canadians"],
+  "lastUpdatedKST": "2025-09-08T10:00:00+09:00",
+  "readingTimeMin": 6,
+  "seo": {
+    "description": "Real-time pop-up events around Seongsu and Hannam with maps and tips for Canadian visitors.",
+    "keywords": ["seoul hotspot", "seongsu pop-up", "korea travel from canada"]
+  },
+  "status": "Approved",
+  "schedule": {
+    "publishAtKST": "2025-09-09T09:00:00+09:00"
+  },
+  "sources": [
+    {"title": "Seoul City Cultural Events RSS", "url": "https://example.seoul.kr/rss", "publisher": "Seoul City", "publishedAt": "2025-09-07T12:00:00+09:00"},
+    {"title": "Exhibition Host Calendar", "url": "https://example.host.kr/calendar.rss", "publisher": "Host Org", "publishedAt": "2025-09-06T09:00:00+09:00"}
+  ],
+  "adsPolicy": {"isSensitiveSection": false, "topAdDisabled": false},
+  "body": "## Today’s Hotspots in Seongsu\n- Brand A pop-up (map link)\n- Brand B collaboration café (queue tips)\n\n### Transport Tips\nLine 2 congestion after 6 pm. Use exit 3 for shortest walks."
+}

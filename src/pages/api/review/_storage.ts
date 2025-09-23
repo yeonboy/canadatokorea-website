@@ -6,7 +6,8 @@ import path from 'path';
 import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 
 const BUCKET = process.env.CONTENT_S3_BUCKET || '';
-const REGION = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'us-east-1';
+// Prefer CONTENT_REGION; fallback to AWS defaults for local/dev
+const REGION = process.env.CONTENT_REGION || process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'us-east-1';
 const TODAY_KEY = process.env.CONTENT_TODAY_KEY || 'content/data/today-cards.json';
 
 let s3: S3Client | null = null;

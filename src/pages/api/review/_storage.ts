@@ -6,21 +6,27 @@ import path from 'path';
 import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import { Readable } from 'stream';
 
-const BUCKET = process.env.CONTENT_S3_BUCKET || '';
-// Prefer CONTENT_REGION; fallback to AWS defaults for local/dev
-const REGION = process.env.CONTENT_REGION || process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'us-east-1';
-const TODAY_KEY = process.env.CONTENT_TODAY_KEY || 'content/data/today-cards.json';
+function getEnv() {
+  return {
+    BUCKET: process.env.CONTENT_S3_BUCKET || '',
+    REGION: process.env.CONTENT_REGION || process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'us-east-1',
+    TODAY_KEY: process.env.CONTENT_TODAY_KEY || 'content/data/today-cards.json'
+  } as const;
+}
 
-let s3: S3Client | null = null;
-function getS3(): S3Client {
-  if (!s3) s3 = new S3Client({ region: REGION });
-  return s3;
+let s3Cache: { region: string; client: S3Client } | null = null;
+function getS3(region: string): S3Client {
+  if (!s3Cache || s3Cache.region !== region) {
+    s3Cache = { region, client: new S3Client({ region }) };
+  }
+  return s3Cache.client;
 }
 
 export async function loadTodayJson<T>(def: T): Promise<T> {
+  const { BUCKET, REGION, TODAY_KEY } = getEnv();
   if (BUCKET) {
     try {
-      const out = await getS3().send(new GetObjectCommand({ Bucket: BUCKET, Key: TODAY_KEY }));
+      const out = await getS3(REGION).send(new GetObjectCommand({ Bucket: BUCKET, Key: TODAY_KEY }));
       const bodyStr = await readBodyToString(out.Body as any);
       if (bodyStr) return JSON.parse(bodyStr);
     } catch (e) {
@@ -33,9 +39,10 @@ export async function loadTodayJson<T>(def: T): Promise<T> {
 }
 
 export async function saveTodayJson(data: any): Promise<void> {
+  const { BUCKET, REGION, TODAY_KEY } = getEnv();
   const body = JSON.stringify(data, null, 2);
   if (BUCKET) {
-    await getS3().send(new PutObjectCommand({
+    await getS3(REGION).send(new PutObjectCommand({
       Bucket: BUCKET,
       Key: TODAY_KEY,
       Body: body,

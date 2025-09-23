@@ -30,10 +30,16 @@ export async function loadTodayJson<T>(def: T): Promise<T> {
       const bodyStr = await readBodyToString(out.Body as any);
       if (bodyStr) return JSON.parse(bodyStr);
     } catch (e) {
-      // fall through to default
+      console.warn('S3 load failed, falling back to FS', {
+        bucket: BUCKET,
+        key: TODAY_KEY,
+        region: REGION,
+        error: (e as any)?.name || 'Unknown'
+      });
     }
     return def;
   }
+  console.warn('S3 not configured. Using local FS storage.', { BUCKET, REGION, TODAY_KEY });
   const file = path.join(process.cwd(), 'content', 'data', 'today-cards.json');
   try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return def; }
 }
@@ -50,10 +56,25 @@ export async function saveTodayJson(data: any): Promise<void> {
     }));
     return;
   }
+  // Try local FS. If read-only, but BUCKET is available at runtime, fallback to S3.
   const file = path.join(process.cwd(), 'content', 'data', 'today-cards.json');
   const dir = path.dirname(file);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(file, body);
+  try {
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(file, body);
+  } catch (err: any) {
+    if ((err?.code === 'EROFS' || /read-only/i.test(String(err?.message))) && BUCKET) {
+      console.warn('FS read-only detected. Falling back to S3.', { file, bucket: BUCKET, key: TODAY_KEY });
+      await getS3(REGION).send(new PutObjectCommand({
+        Bucket: BUCKET,
+        Key: TODAY_KEY,
+        Body: body,
+        ContentType: 'application/json; charset=utf-8',
+      }));
+      return;
+    }
+    throw err;
+  }
 }
 
 async function readBodyToString(body: any): Promise<string> {

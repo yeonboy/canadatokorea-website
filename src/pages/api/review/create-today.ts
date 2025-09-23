@@ -4,8 +4,7 @@
  */
 
 import type { NextApiRequest, NextApiResponse } from 'next';
-import fs from 'fs';
-import path from 'path';
+import { loadTodayJson, saveTodayJson } from './_storage';
 import cors from '../_cors';
 
 type Source = { title: string; url: string; publisher: string };
@@ -26,17 +25,6 @@ type Card = {
   i18n?: any;
 };
 
-const dataFile = path.join(process.cwd(), 'content', 'data', 'today-cards.json');
-
-function loadJson<T>(file: string, def: T): T {
-  try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return def; }
-}
-
-function saveJson(file: string, data: any) {
-  const dir = path.dirname(file);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(file, JSON.stringify(data, null, 2));
-}
 
 function kstNowISO(): string {
   const now = new Date();
@@ -91,12 +79,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       i18n
     };
 
-    const todayCards: Card[] = loadJson(dataFile, []);
+    const todayCards: Card[] = await loadTodayJson<Card[]>([]);
     // 중복(제목+타입) 방지
     const exists = todayCards.find((c) => c.type === newCard.type && c.title === newCard.title);
     if (!exists) {
       todayCards.unshift(newCard);
-      saveJson(dataFile, todayCards);
+      await saveTodayJson(todayCards);
     }
 
     return res.status(200).json({ success: true, card: newCard });

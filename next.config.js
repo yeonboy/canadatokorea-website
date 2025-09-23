@@ -27,6 +27,20 @@ const nextConfig = {
       transform: 'lucide-react/dist/esm/icons/{{member}}.mjs'
     }
   },
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: '/review',
+        permanent: false
+      },
+      {
+        source: '/admin/',
+        destination: '/review/',
+        permanent: false
+      }
+    ];
+  },
   // exclude admin/review from export
   exportPathMap: async (defaultPathMap) => {
     const pathMap = { ...defaultPathMap };

@@ -4,6 +4,19 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        {/* Google Tag Manager */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-TM8V7PBN');
+            `,
+          }}
+        />
+
         {/* Google Analytics */}
         <script
           async
@@ -41,6 +54,9 @@ export default function Document() {
         <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
         
         {/* 파비콘 */}
+        {/* 파비콘: 브라우저가 정확한 해상도를 선택할 수 있도록 16/32 명시 */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
         <link rel="icon" type="image/png" href="/favicon.png?v=2" />
         <link rel="icon" href="/favicon.ico?v=2" />
         <link rel="apple-touch-icon" href="/favicon.png?v=2" />
@@ -63,6 +79,16 @@ export default function Document() {
         <meta name="twitter:image" content="https://canadatokorea.com/og-default.jpg?v=2" />
       </Head>
       <body>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TM8V7PBN"
+            height="0" 
+            width="0" 
+            style={{display: 'none', visibility: 'hidden'}}
+          />
+        </noscript>
+        
         <Main />
         <NextScript />
       </body>

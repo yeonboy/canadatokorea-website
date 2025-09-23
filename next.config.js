@@ -1,9 +1,15 @@
 /** @type {import('next').NextConfig} */
+const isAdminSSR = process.env.ADMIN_SSR === '1';
+// Amplify Hosting 환경에서는 AMPLIFY_APP_ID가 자동으로 주입됨.
+// Amplify에서는 SSR을 강제하여 정적 export로 잘못 빌드되어 /admin 404가 나는 문제를 방지
+const isAmplifyEnv = !!process.env.AMPLIFY_APP_ID;
+const forceSSR = isAdminSSR || isAmplifyEnv;
 const nextConfig = {
   // 동시 dev 서버 실행 시 빌드 디렉토리 분리 지원
   distDir: process.env.NEXT_DIST_DIR || '.next',
-  // 개발 환경에서는 API 라우트 사용을 위해 export 비활성화
-  output: process.env.NODE_ENV === 'development' ? undefined : 'export',
+  // Admin(SSR) 또는 Amplify 환경에서는 정적 export 비활성화
+  // (Amplify에서 SSR이 아닌 정적 export로 빌드되면 /admin이 404가 날 수 있음)
+  output: forceSSR || process.env.NODE_ENV === 'development' ? undefined : 'export',
   trailingSlash: true,
   images: {
     unoptimized: true,

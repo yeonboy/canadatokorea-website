@@ -4,6 +4,7 @@ import path from 'path';
 // Optional S3-backed JSON storage for Amplify/Serverless
 // If CONTENT_S3_BUCKET is set, read/write JSON to that bucket; otherwise use local filesystem
 import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { Readable } from 'stream';
 
 const BUCKET = process.env.CONTENT_S3_BUCKET || '';
 // Prefer CONTENT_REGION; fallback to AWS defaults for local/dev
@@ -20,8 +21,8 @@ export async function loadTodayJson<T>(def: T): Promise<T> {
   if (BUCKET) {
     try {
       const out = await getS3().send(new GetObjectCommand({ Bucket: BUCKET, Key: TODAY_KEY }));
-      const body = await out.Body?.transformToString();
-      if (body) return JSON.parse(body);
+      const bodyStr = await readBodyToString(out.Body as any);
+      if (bodyStr) return JSON.parse(bodyStr);
     } catch (e) {
       // fall through to default
     }
@@ -46,6 +47,26 @@ export async function saveTodayJson(data: any): Promise<void> {
   const dir = path.dirname(file);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(file, body);
+}
+
+async function readBodyToString(body: any): Promise<string> {
+  if (!body) return '';
+  // Browser/Edge runtimes may expose transformToString
+  if (typeof body.transformToString === 'function') {
+    return await body.transformToString();
+  }
+  // Node.js stream
+  if (body instanceof Readable || typeof body.on === 'function') {
+    const chunks: Buffer[] = [];
+    return await new Promise<string>((resolve, reject) => {
+      body.on('data', (chunk: any) => chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk)));
+      body.on('error', reject);
+      body.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+    });
+  }
+  if (body instanceof Uint8Array) return Buffer.from(body).toString('utf8');
+  if (typeof body === 'string') return body;
+  try { return String(body); } catch { return ''; }
 }
 
 

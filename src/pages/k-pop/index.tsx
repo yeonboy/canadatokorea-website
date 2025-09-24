@@ -464,7 +464,7 @@ export default function KPop({ seoData }: KPopProps) {
               </div>
               <div className="rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                 <iframe
-                  src="/k-pop-demon-hunters/index.html"
+                  src={`/k-pop-demon-hunters/index.html?lang=${locale === 'fr' ? 'fr' : 'en'}`}
                   title="K-pop Demon Hunters"
                   className="w-full"
                   style={{ height: '80vh' }}

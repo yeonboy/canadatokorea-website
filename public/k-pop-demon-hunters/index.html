@@ -1,20 +1,20 @@
 
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>케이팝 데몬 헌터스 성향 테스트</title>
+    <title>K-pop Demon Hunters – Personality Test</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <section id="start-page" class="text-center">
-            <h1 class="mt-5">케이팝 데몬 헌터스</h1>
-            <h2 class="sub-title my-3">내 이상형은 어떤 헌터?</h2>
+            <h1 class="mt-5" data-i18n="title">K-pop Demon Hunters</h1>
+            <h2 class="sub-title my-3" data-i18n="subtitle">Which hunter is your type?</h2>
             <img src="img/main.png" class="img-fluid main-img my-4" alt="K-Pop Demon Hunters Main">
-            <button id="start-btn" class="btn btn-primary btn-lg">테스트 시작하기</button>
+            <button id="start-btn" class="btn btn-primary btn-lg" data-i18n="start">Start Test</button>
         </section>
 
         <section id="qna-page" style="display: none;">
@@ -30,6 +30,20 @@
         </section>
     </div>
 
+    <script>
+      (function(){
+        const dict = {
+          en: { title: 'K-pop Demon Hunters', subtitle: 'Which hunter is your type?', start: 'Start Test' },
+          fr: { title: 'Chasseurs de Démons K‑pop', subtitle: 'Quel chasseur est votre type ?', start: 'Lancer le test' }
+        };
+        const lang = new URLSearchParams(location.search).get('lang') || 'en';
+        const t = (k)=> (dict[lang] && dict[lang][k]) || dict.en[k] || '';
+        document.addEventListener('DOMContentLoaded', ()=>{
+          document.documentElement.lang = lang;
+          document.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent = t(el.getAttribute('data-i18n')); });
+        });
+      })();
+    </script>
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>

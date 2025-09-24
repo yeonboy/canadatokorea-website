@@ -89,7 +89,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     return res.status(200).json({ success: true, card: newCard });
   } catch (error: any) {
-    console.error('Create today error:', error);
+    console.error('Create today error:', {
+      name: error?.name,
+      code: error?.code || error?.Code,
+      message: error?.message,
+    });
     if (error?.code === 'STORAGE_NOT_CONFIGURED') {
       return res.status(500).json({
         error: 'Storage not configured',
@@ -102,7 +106,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       });
     }
-    return res.status(500).json({ error: 'Internal server error', details: error?.message || 'Unknown error' });
+    return res.status(500).json({
+      error: 'Internal server error',
+      details: error?.message || 'Unknown error',
+      name: error?.name,
+      code: error?.code || error?.Code,
+    });
   }
 }
 

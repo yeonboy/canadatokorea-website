@@ -62,12 +62,27 @@ export async function saveTodayJson(data: any): Promise<void> {
   const { BUCKET, REGION, TODAY_KEY } = getEnv();
   const body = JSON.stringify(data, null, 2);
   if (BUCKET) {
-    await getS3(REGION).send(new PutObjectCommand({
-      Bucket: BUCKET,
-      Key: TODAY_KEY,
-      Body: body,
-      ContentType: 'application/json; charset=utf-8',
-    }));
+    console.log('S3 PutObject start', { bucket: BUCKET, key: TODAY_KEY, region: REGION });
+    try {
+      await getS3(REGION).send(new PutObjectCommand({
+        Bucket: BUCKET,
+        Key: TODAY_KEY,
+        Body: body,
+        ContentType: 'application/json; charset=utf-8',
+      }));
+      console.log('S3 PutObject success', { bucket: BUCKET, key: TODAY_KEY });
+    } catch (e: any) {
+      console.error('S3 PutObject failed', {
+        bucket: BUCKET,
+        key: TODAY_KEY,
+        region: REGION,
+        name: e?.name,
+        message: e?.message,
+        httpStatus: e?.$metadata?.httpStatusCode,
+        code: e?.Code || e?.code,
+      });
+      throw e;
+    }
     return;
   }
   if (isServerlessRuntime()) {

@@ -1,0 +1,159 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #1a1a1d;
+    color: #c5c6c7;
+}
+
+.container {
+    max-width: 800px;
+}
+
+/* --- Start Page --- */
+#start-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: fadeIn 1s;
+}
+
+#start-page h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #66fcf1;
+}
+
+#start-page .sub-title {
+    font-size: 1.5rem;
+    color: #45a29e;
+}
+
+.main-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #45a29e;
+    background-color: #0b0c10;
+}
+
+/* --- QnA Page --- */
+#qna-page {
+    animation: fadeIn 0.5s;
+}
+
+.progress-bar {
+    background-color: #66fcf1;
+}
+
+.q-box {
+    background-color: #1f2833;
+    padding: 30px;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.answer-btn {
+    background-color: #45a29e;
+    color: #0b0c10;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+}
+
+.answer-btn:hover {
+    background-color: #66fcf1;
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+/* --- Result Page --- */
+#result-page {
+    animation: fadeIn 1s;
+}
+
+#result-name {
+    color: #66fcf1;
+    font-weight: 700;
+}
+
+.result-img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 5px solid #45a29e;
+    background-color: #0b0c10;
+}
+
+.keywords {
+    font-size: 1.2rem;
+    color: #45a29e;
+    font-weight: 700;
+}
+
+.result-section {
+    background-color: #1f2833;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.result-section h3, .result-section h4 {
+    color: #66fcf1;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.result-section p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #c5c6c7;
+}
+
+.text-start p {
+    text-align: left;
+}
+
+.guide-section {
+    background-color: #45a29e;
+    color: #0b0c10;
+}
+.guide-section h3, .guide-section p {
+    color: #0b0c10;
+}
+
+.compatibility h4 {
+    color: #66fcf1;
+}
+.compatibility p {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.share-section button {
+    margin: 0 10px;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

@@ -18,7 +18,8 @@ export default function KPop({ seoData }: KPopProps) {
   const tabs = [
     { key: 'artists', label: 'Artists & Groups' },
     { key: 'schedules', label: 'Schedules & Events' },
-    { key: 'canada', label: 'Canada Connection' }
+    { key: 'canada', label: 'Canada Connection' },
+    { key: 'demon', label: 'K-pop Demon Hunters' }
   ];
 
   const featuredArtists = [
@@ -451,6 +452,25 @@ export default function KPop({ seoData }: KPopProps) {
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* K-pop Demon Hunters (external test) */}
+          {activeTab === 'demon' && (
+            <div>
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">K-pop Demon Hunters</h2>
+                <p className="text-gray-600">External demo embedded below</p>
+              </div>
+              <div className="rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <iframe
+                  src="/k-pop-demon-hunters/index.html"
+                  title="K-pop Demon Hunters"
+                  className="w-full"
+                  style={{ height: '80vh' }}
+                />
+              </div>
+              <p className="mt-3 text-xs text-gray-500">Static files served from /public/k-pop-demon-hunters/</p>
             </div>
           )}
         </div>

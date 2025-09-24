@@ -16,10 +16,10 @@ export default function KPop({ seoData }: KPopProps) {
   const [activeTab, setActiveTab] = useState('artists');
 
   const tabs = [
-    { key: 'artists', label: 'Artists & Groups' },
-    { key: 'schedules', label: 'Schedules & Events' },
-    { key: 'canada', label: 'Canada Connection' },
-    { key: 'demon', label: 'K-pop Demon Hunters' }
+    { key: 'artists', label: t('kpop.tabs.artists', locale) },
+    { key: 'schedules', label: t('kpop.tabs.schedules', locale) },
+    { key: 'canada', label: t('kpop.tabs.canada', locale) },
+    { key: 'demon', label: t('kpop.tabs.demon', locale) }
   ];
 
   const featuredArtists = [
@@ -320,7 +320,7 @@ export default function KPop({ seoData }: KPopProps) {
                       activeTab === tab.key ? 'voxy-button--active' : ''
                     }`}
                   >
-                    <span className="button_top">{t(`kpop.tabs.${tab.key}`, locale)}</span>
+                    <span className="button_top">{tab.label}</span>
                   </button>
                 ))}
             </div>

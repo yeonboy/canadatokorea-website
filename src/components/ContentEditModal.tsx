@@ -75,6 +75,44 @@ export default function ContentEditModal({
   
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  function normalizeImageInput(raw: string): { url: string; alt?: string } | null {
+    if (!raw) return null;
+    let s = raw.trim();
+    // BBCode: [img]URL[/img]
+    let m = s.match(/\[img\](.+?)\[\/img\]/i);
+    if (m && m[1]) return { url: m[1].trim() };
+
+    // HTML: <img src="URL" alt="ALT" />
+    const srcMatch = s.match(/<img[^>]*src=["']([^"']+)["'][^>]*>/i);
+    if (srcMatch && srcMatch[1]) {
+      const altMatch = s.match(/alt=["']([^"']*)["']/i);
+      return { url: srcMatch[1].trim(), alt: altMatch ? altMatch[1].trim() : undefined };
+    }
+
+    // Markdown: ![alt](URL)
+    m = s.match(/!\[([^\]]*)\]\((.+?)\)/);
+    if (m && m[2]) return { url: m[2].trim(), alt: (m[1] || '').trim() };
+
+    // Imgur page URL → direct image URL
+    // ex) https://imgur.com/31r0odC → https://i.imgur.com/31r0odC.jpg
+    m = s.match(/^https?:\/\/(?:www\.)?imgur\.com\/([A-Za-z0-9]+)(?:\.(png|jpe?g|gif|webp))?(?:\?.*)?$/i);
+    if (m && m[1]) {
+      const id = m[1];
+      const ext = m[2] ? m[2].toLowerCase() : 'jpg';
+      return { url: `https://i.imgur.com/${id}.${ext}` };
+    }
+
+    // Direct image URL
+    m = s.match(/^https?:\/\/[^\s]+\.(?:png|jpe?g|gif|webp|avif|bmp)(?:\?[^\s]*)?$/i);
+    if (m) return { url: s };
+
+    // Google Drive file share → direct view
+    m = s.match(/^https?:\/\/drive\.google\.com\/file\/d\/([^/]+)\//i);
+    if (m && m[1]) return { url: `https://drive.google.com/uc?export=view&id=${m[1]}` };
+
+    return null;
+  }
+
   // 모달이 열릴 때마다 초기값 설정
   useEffect(() => {
     if (isOpen) {
@@ -198,12 +236,18 @@ export default function ContentEditModal({
 
   const addImage = () => {
     if (newImageUrl.trim()) {
-      setImages([...images, newImageUrl.trim()]);
-      const imageUrl = newImageUrl.trim();
+      const parsed = normalizeImageInput(newImageUrl);
+      if (!parsed) {
+        alert('이미지 URL/코드를 인식할 수 없습니다. 예시: https://i.imgur.com/xxxx.png, [img]URL[/img], <img src="URL" />, ![alt](URL), https://imgur.com/xxxx');
+        return;
+      }
+      const imageUrl = parsed.url;
+      const imageAlt = parsed.alt && parsed.alt.length > 0 ? parsed.alt : 'Image';
+      setImages([...images, imageUrl]);
       setNewImageUrl('');
       
       // 배치 위치에 따라 이미지 마크다운 삽입
-      const imageMarkdown = `![Image](${imageUrl})`;
+      const imageMarkdown = `![${imageAlt}](${imageUrl})`;
       
       // 현재 활성 언어에 따라 해당 콘텐츠에 이미지 추가
       const addImageToContent = (currentContent: string) => {

@@ -9,8 +9,17 @@ export function renderSimpleMarkdown(text: string): string {
   
   // 이미지 렌더링: ![alt](url) → <img>
   html = html.replace(
-    /!\[([^\]]*)\]\(([^)]+)\)/g, 
-    '<img src="$2" alt="$1" class="max-w-full h-auto rounded-lg my-4" style="max-height: 200px; object-fit: cover;" />'
+    /!\[([^\]]*)\]\(([^)]+)\)/g,
+    (m, alt, url) => {
+      // Imgur page URL 보호: https://imgur.com/ID → https://i.imgur.com/ID.jpg
+      const match = String(url).match(/^https?:\/\/(?:www\.)?imgur\.com\/([A-Za-z0-9]+)(?:\.(png|jpe?g|gif|webp))?(?:\?.*)?$/i);
+      if (match && match[1]) {
+        const id = match[1];
+        const ext = match[2] ? match[2].toLowerCase() : 'jpg';
+        url = `https://i.imgur.com/${id}.${ext}`;
+      }
+      return `<img src="${url}" alt="${alt}" class="max-w-full h-auto rounded-lg my-4" style="max-height: 200px; object-fit: cover;" />`;
+    }
   );
   
   // 링크 렌더링: [text](url) → <a>

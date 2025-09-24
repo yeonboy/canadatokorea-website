@@ -153,6 +153,7 @@ export default function TodayCards({ cards, showMap = true, mapWeatherClass }: T
                       </h3>
                       <div 
                         className="text-[15px] md:text-[17px] leading-8 text-gray-700"
+                        suppressHydrationWarning
                         dangerouslySetInnerHTML={{
                           __html: renderSimpleMarkdown(
                             (locale === 'fr' && (card as any).i18n?.fr?.summary) ? (card as any).i18n.fr.summary : card.summary

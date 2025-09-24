@@ -2,6 +2,19 @@ const startPage = document.querySelector("#start-page");
 const qnaPage = document.querySelector("#qna-page");
 const resultPage = document.querySelector("#result-page");
 
+const urlParamsGlobal = new URLSearchParams(location.search);
+const lang = urlParamsGlobal.get('lang') || 'en';
+const i18n = {
+  en: {
+    progressLabel: 'Progress',
+    linkCopied: 'Link copied!'
+  },
+  fr: {
+    progressLabel: 'Progression',
+    linkCopied: 'Lien copié !'
+  }
+};
+
 const endPoint = qnaData.length;
 const select = {};
 
@@ -16,7 +29,9 @@ function setShareButtons(resultData) {
     const copyBtn = document.querySelector('#copy-link');
     
     const pageUrl = location.href;
-    const shareText = `[결과] 나의 케이팝 데몬 헌터 이상형은 '${resultData.name}'! 당신의 타입은?`;
+    const shareText = lang === 'fr'
+      ? `[Résultat] Mon chasseur K‑pop idéal est « ${resultData.name} » ! Et vous ?`
+      : `[Result] My ideal K‑pop Demon Hunter is "${resultData.name}"! What's yours?`;
 
     twitterBtn.addEventListener('click', () => {
         window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`);
@@ -26,7 +41,7 @@ function setShareButtons(resultData) {
     });
     copyBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(pageUrl).then(() => {
-            alert('링크가 복사되었습니다!');
+            alert(i18n[lang]?.linkCopied || i18n.en.linkCopied);
         });
     });
 

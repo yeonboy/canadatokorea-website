@@ -1,16 +1,16 @@
 
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta property="og:title" content="나의 케이팝 데몬 헌터 이상형은?">
-    <meta property="og:description" content="성향 테스트를 통해 당신의 데몬 헌터 이상형을 찾아보세요!">
+    <meta property="og:title" content="K-pop Demon Hunters – Who is your match?">
+    <meta property="og:description" content="Find your demon hunter match with this fun personality test!">
     <meta property="og:image" content="img/main.png">
     <meta property="og:url" content="">
 
-    <title>결과 - 케이팝 데몬 헌터스</title>
+    <title>Result - K-pop Demon Hunters</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <section id="result-page" class="text-center">
-            <h2 class="mt-5">당신의 이상형 헌터는...</h2>
+            <h2 class="mt-5" data-i18n="headline">Your ideal hunter is…</h2>
             <h1 id="result-name" class="my-3"></h1>
             <img id="result-img" class="img-fluid result-img my-4" alt="Result Character">
             
@@ -27,72 +27,86 @@
             </div>
 
             <div class="result-section my-5 p-4 rounded">
-                <h3>당신은 이런 사람!</h3>
+                <h3 data-i18n="youare">This is you!</h3>
                 <p id="user-personality"></p>
             </div>
 
             <div class="result-section my-5 p-4 rounded">
-                <h3>이런 사람을 좋아하네요</h3>
+                <h3 data-i18n="youlike">You like this type</h3>
                 <p id="result-description"></p>
             </div>
 
             <div class="result-section my-5 p-4 rounded">
-                <h3>❤️ 연애 스타일 심층 분석</h3>
+                <h3 data-i18n="dating">❤️ Dating style – deep dive</h3>
                 <p id="dating-style"></p>
             </div>
 
             <div class="row my-5 text-start">
                 <div class="col-md-6 mb-3">
                     <div class="result-section p-4 h-100">
-                        <h4>👍 강점</h4>
+                        <h4 data-i18n="strengths">👍 Strengths</h4>
                         <p id="strengths"></p>
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <div class="result-section p-4 h-100">
-                        <h4>👎 약점</h4>
+                        <h4 data-i18n="weaknesses">👎 Weaknesses</h4>
                         <p id="weaknesses"></p>
                     </div>
                 </div>
             </div>
 
             <div class="result-section my-5 p-4 rounded">
-                <h3>💔 이럴 때 무너져요</h3>
+                <h3 data-i18n="struggles">💔 Struggles</h3>
                 <p id="struggles"></p>
             </div>
 
             <div class="result-section my-5">
-                <h3>능력치 스탯</h3>
+                <h3 data-i18n="stats">Stats</h3>
                 <canvas id="stats-chart" width="400" height="400"></canvas>
             </div>
 
             <div class="result-section guide-section my-5 p-4 rounded">
-                <h3>※ 공략법 ※</h3>
+                <h3 data-i18n="guide">※ How to win their heart ※</h3>
                 <p id="guide"></p>
             </div>
 
             <div class="compatibility row my-5">
                 <div class="col-md-6">
-                    <h4>환상의 궁합</h4>
+                    <h4 data-i18n="bestmatch">Best Match</h4>
                     <p id="best-match"></p>
                 </div>
                 <div class="col-md-6">
-                    <h4>파국적인 궁합</h4>
+                    <h4 data-i18n="worstmatch">Worst Match</h4>
                     <p id="worst-match"></p>
                 </div>
             </div>
 
             <div class="share-section my-5">
-                <h4>결과 공유하기</h4>
-                <button id="twitter-share" class="btn btn-info">트위터</button>
-                <button id="facebook-share" class="btn btn-primary">페이스북</button>
-                <button id="copy-link" class="btn btn-secondary">링크 복사</button>
+                <h4 data-i18n="share">Share your result</h4>
+                <button id="twitter-share" class="btn btn-info" data-i18n="twitter">Twitter</button>
+                <button id="facebook-share" class="btn btn-primary" data-i18n="facebook">Facebook</button>
+                <button id="copy-link" class="btn btn-secondary" data-i18n="copy">Copy link</button>
             </div>
 
-            <button onclick="location.href='index.html'" class="btn btn-lg btn-primary">테스트 다시하기</button>
+            <button onclick="location.href='index.html'" class="btn btn-lg btn-primary" data-i18n="restart">Restart Test</button>
         </section>
     </div>
     <audio id="bgm" loop></audio>
+    <script>
+      (function(){
+        const dict = {
+          en: { headline:'Your ideal hunter is…', youare:'This is you!', youlike:'You like this type', dating:'❤️ Dating style – deep dive', strengths:'👍 Strengths', weaknesses:'👎 Weaknesses', struggles:'💔 Struggles', stats:'Stats', guide:'※ How to win their heart ※', bestmatch:'Best Match', worstmatch:'Worst Match', share:'Share your result', twitter:'Twitter', facebook:'Facebook', copy:'Copy link', restart:'Restart Test' },
+          fr: { headline:"Votre chasseur idéal est…", youare:"Voici votre profil !", youlike:"Vous aimez ce type", dating:"❤️ Style amoureux – analyse", strengths:"👍 Points forts", weaknesses:"👎 Points faibles", struggles:"💔 Difficultés", stats:"Statistiques", guide:"※ Comment lui plaire ※", bestmatch:"Meilleure Affinité", worstmatch:"Pire Affinité", share:"Partager le résultat", twitter:"Twitter", facebook:"Facebook", copy:"Copier le lien", restart:"Recommencer le test" }
+        };
+        const lang = new URLSearchParams(location.search).get('lang') || 'en';
+        const t = (k)=> (dict[lang] && dict[lang][k]) || dict.en[k] || '';
+        document.addEventListener('DOMContentLoaded', ()=>{
+          document.documentElement.lang = lang;
+          document.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent = t(el.getAttribute('data-i18n')); });
+        });
+      })();
+    </script>
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>

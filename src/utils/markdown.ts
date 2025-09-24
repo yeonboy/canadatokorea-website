@@ -54,6 +54,9 @@ export function renderSimpleMarkdown(text: string): string {
   if (!html.startsWith('<')) {
     html = '<p class="mb-4">' + html + '</p>';
   }
+  // Final sanitize to prevent any leftover scripts/embeds causing hydration mismatch
+  html = html.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
+  html = html.replace(/<blockquote[^>]*imgur-embed-pub[\s\S]*?<\/blockquote>/gi, '');
   
   return html;
 }

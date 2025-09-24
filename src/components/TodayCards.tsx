@@ -26,6 +26,14 @@ export default function TodayCards({ cards, showMap = true, mapWeatherClass }: T
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [openFullMap, setOpenFullMap] = useState<boolean>(false);
   const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
+
+  // Client-only HTML renderer to avoid SSR/CSR mismatches from user content
+  const ClientHTML = ({ html, className }: { html: string; className?: string }) => {
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => { setMounted(true); }, []);
+    if (!mounted) return <div className={className} aria-hidden="true" />;
+    return <div className={className} dangerouslySetInnerHTML={{ __html: html }} />;
+  };
   
   const filteredCards = activeFilter === 'all' 
     ? cards 
@@ -151,14 +159,11 @@ export default function TodayCards({ cards, showMap = true, mapWeatherClass }: T
                       <h3 className="mb-3 text-[22px] md:text-[26px] font-extrabold leading-snug tracking-tight text-gray-900">
                         {(locale === 'fr' && (card as any).i18n?.fr?.title) ? (card as any).i18n.fr.title : card.title}
                       </h3>
-                      <div 
+                      <ClientHTML
                         className="text-[15px] md:text-[17px] leading-8 text-gray-700"
-                        suppressHydrationWarning
-                        dangerouslySetInnerHTML={{
-                          __html: renderSimpleMarkdown(
-                            (locale === 'fr' && (card as any).i18n?.fr?.summary) ? (card as any).i18n.fr.summary : card.summary
-                          )
-                        }}
+                        html={renderSimpleMarkdown(
+                          (locale === 'fr' && (card as any).i18n?.fr?.summary) ? (card as any).i18n.fr.summary : card.summary
+                        )}
                       />
 
 

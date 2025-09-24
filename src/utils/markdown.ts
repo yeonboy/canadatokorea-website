@@ -116,10 +116,15 @@ function preprocessMarkdown(input: string): string {
   s = s.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
   // Remove style tags
   s = s.replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '');
+  // Case: markdown image wrapping an Imgur embed block → flatten to a single markdown image
+  s = s.replace(/!\[[^\]]*\]\(\s*<blockquote[^>]*class=\"imgur-embed-pub\"[^>]*data-id=\"([A-Za-z0-9]+)\"[^>]*>[\s\S]*?<\/blockquote>\s*(?:<script[\s\S]*?imgur\.com[\s\S]*?<\/script>)?\s*\)/gi,
+    (_m, id) => `![Imgur](https://i.imgur.com/${id}.jpg)`);
   // Replace Imgur embed block with a direct image markdown
   s = s.replace(/<blockquote[^>]*class=\"imgur-embed-pub\"[^>]*data-id=\"([A-Za-z0-9]+)\"[^>]*>[\s\S]*?<\/blockquote>\s*(?:<script[\s\S]*?imgur\.com[\s\S]*?<\/script>)?/gi, (_m, id) => `![Imgur](https://i.imgur.com/${id}.jpg)`);
   // Drop any remaining HTML tags except a few safe ones (handled by negative lookahead)
   s = s.replace(/<(?!\/?(b|strong|em|i|u|br)\b)[^>]*>/gi, '');
+  // Nested image markdown like ![x](![y](url)) → ![y](url)
+  s = s.replace(/!\[[^\]]*\]\(\s*!\[[^\]]*\]\(([^)]+)\)\s*\)/g, (_m, url) => `![Image](${url})`);
   // Remove broken image markdown that was not closed
   s = s.replace(/!\[[^\]]*\]\([^\)]*$/gm, '');
   return s;

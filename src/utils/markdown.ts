@@ -5,7 +5,7 @@
 export function renderSimpleMarkdown(text: string): string {
   if (!text) return '';
   
-  let html = text;
+  let html = preprocessMarkdown(text);
   
   // 이미지 렌더링: ![alt](url) → <img>
   html = html.replace(
@@ -84,7 +84,7 @@ export function removeImagesFromMarkdown(text: string): string {
 export function stripMarkdown(text: string): string {
   if (!text) return '';
   
-  let plain = text;
+  let plain = preprocessMarkdown(text);
   
   // 이미지 제거
   plain = plain.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '');
@@ -108,4 +108,22 @@ export function stripMarkdown(text: string): string {
   plain = plain.replace(/\n\s*\n/g, '\n').trim();
   
   return plain;
+}
+
+function preprocessMarkdown(input: string): string {
+  let s = input || '';
+  // Remove script tags entirely
+  s = s.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
+  // Remove style tags
+  s = s.replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '');
+  // Replace Imgur embed block with a direct image markdown
+  s = s.replace(/<blockquote[^>]*class=\"imgur-embed-pub\"[^>]*data-id=\"([A-Za-z0-9]+)\"[^>]*>[\s\S]*?<\/blockquote>\s*(?:<script[\s\S]*?imgur\.com[\s\S]*?<\/script>)?/gi, (_m, id) => `![Imgur](https://i.imgur.com/${id}.jpg)`);
+  // Drop any remaining HTML tags except a few safe ones
+  s = s.replace(/<(?!\/?(b|strong|em|i|u|br)\b)[^>]*>/gi, (tag) => {
+    // Allow <br>
+    return /<br\s*\/?>(?i)/.test(tag) ? tag : '';
+  });
+  // Remove broken image markdown that was not closed
+  s = s.replace(/!\[[^\]]*\]\([^\)]*$/gm, '');
+  return s;
 }

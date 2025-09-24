@@ -155,8 +155,8 @@ export default function TodayCards({ cards, showMap = true, mapWeatherClass }: T
                         className="text-[15px] md:text-[17px] leading-8 text-gray-700"
                         dangerouslySetInnerHTML={{
                           __html: renderSimpleMarkdown(
-                            stripMarkdown((locale === 'fr' && (card as any).i18n?.fr?.summary) ? (card as any).i18n.fr.summary : card.summary)
-                          ).split('\n\n').map(p => p.trim() ? `<p class="mb-4">${p}</p>` : '').join('')
+                            (locale === 'fr' && (card as any).i18n?.fr?.summary) ? (card as any).i18n.fr.summary : card.summary
+                          )
                         }}
                       />
 

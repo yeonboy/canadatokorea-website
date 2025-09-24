@@ -12,11 +12,17 @@ export function renderSimpleMarkdown(text: string): string {
     /!\[([^\]]*)\]\(([^)]+)\)/g,
     (m, alt, url) => {
       // Imgur page URL 보호: https://imgur.com/ID → https://i.imgur.com/ID.jpg
+      // Also repair malformed urls like "![Imgur](https:/i.imgur.com/ID.jpg"
+      url = String(url).replace(/^https:\/i\.imgur\.com\//i, 'https://i.imgur.com/');
       const match = String(url).match(/^https?:\/\/(?:www\.)?imgur\.com\/([A-Za-z0-9]+)(?:\.(png|jpe?g|gif|webp))?(?:\?.*)?$/i);
       if (match && match[1]) {
         const id = match[1];
         const ext = match[2] ? match[2].toLowerCase() : 'jpg';
         url = `https://i.imgur.com/${id}.${ext}`;
+      }
+      // Fallback: if url still looks like a markdown fragment (starts with ![ ), drop it
+      if (/^!\[/.test(url)) {
+        return '';
       }
       return `<img src="${url}" alt="${alt}" class="max-w-full h-auto rounded-lg my-4" style="max-height: 200px; object-fit: cover;" />`;
     }
@@ -123,8 +129,8 @@ function preprocessMarkdown(input: string): string {
   s = s.replace(/<blockquote[^>]*class=\"imgur-embed-pub\"[^>]*data-id=\"([A-Za-z0-9]+)\"[^>]*>[\s\S]*?<\/blockquote>\s*(?:<script[\s\S]*?imgur\.com[\s\S]*?<\/script>)?/gi, (_m, id) => `![Imgur](https://i.imgur.com/${id}.jpg)`);
   // Drop any remaining HTML tags except a few safe ones (handled by negative lookahead)
   s = s.replace(/<(?!\/?(b|strong|em|i|u|br)\b)[^>]*>/gi, '');
-  // Nested image markdown like ![x](![y](url)) → ![y](url)
-  s = s.replace(/!\[[^\]]*\]\(\s*!\[[^\]]*\]\(([^)]+)\)\s*\)/g, (_m, url) => `![Image](${url})`);
+  // Nested image markdown like ![x](![y](url) ... ) → ![y](url)
+  s = s.replace(/!\[[^\]]*\]\(\s*!\[[\s\S]*?\]\(([^)\s]+)\)[\s\S]*?\)/g, (_m, url) => `![Image](${url})`);
   // Remove broken image markdown that was not closed
   s = s.replace(/!\[[^\]]*\]\([^\)]*$/gm, '');
   return s;

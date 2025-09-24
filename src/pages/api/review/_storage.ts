@@ -14,6 +14,15 @@ function getEnv() {
   } as const;
 }
 
+function isServerlessRuntime(): boolean {
+  // Detect AWS Lambda/Amplify SSR runtime env
+  return Boolean(
+    process.env.AWS_LAMBDA_FUNCTION_NAME ||
+    process.env.AWS_EXECUTION_ENV ||
+    process.env.AMPLIFY_APP_ID
+  );
+}
+
 let s3Cache: { region: string; client: S3Client } | null = null;
 function getS3(region: string): S3Client {
   if (!s3Cache || s3Cache.region !== region) {
@@ -39,6 +48,11 @@ export async function loadTodayJson<T>(def: T): Promise<T> {
     }
     return def;
   }
+  if (isServerlessRuntime()) {
+    // In serverless, we should not touch FS for writes; for reads we still return default if missing
+    console.warn('S3 not configured in serverless runtime. loadTodayJson will return default.', { REGION, TODAY_KEY });
+    return def;
+  }
   console.warn('S3 not configured. Using local FS storage.', { BUCKET, REGION, TODAY_KEY });
   const file = path.join(process.cwd(), 'content', 'data', 'today-cards.json');
   try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return def; }
@@ -55,6 +69,13 @@ export async function saveTodayJson(data: any): Promise<void> {
       ContentType: 'application/json; charset=utf-8',
     }));
     return;
+  }
+  if (isServerlessRuntime()) {
+    // Explicitly block FS writes in serverless and guide configuration
+    const err: any = new Error('STORAGE_NOT_CONFIGURED: Set CONTENT_S3_BUCKET and CONTENT_REGION in Amplify runtime environment.');
+    err.code = 'STORAGE_NOT_CONFIGURED';
+    console.error('Storage not configured for serverless runtime. Aborting FS write.', { REGION, TODAY_KEY });
+    throw err;
   }
   // Try local FS. If read-only, but BUCKET is available at runtime, fallback to S3.
   const file = path.join(process.cwd(), 'content', 'data', 'today-cards.json');

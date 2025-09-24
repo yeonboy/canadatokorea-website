@@ -90,6 +90,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json({ success: true, card: newCard });
   } catch (error: any) {
     console.error('Create today error:', error);
+    if (error?.code === 'STORAGE_NOT_CONFIGURED') {
+      return res.status(500).json({
+        error: 'Storage not configured',
+        code: 'STORAGE_NOT_CONFIGURED',
+        hint: 'Amplify 런타임 환경변수에 CONTENT_S3_BUCKET, CONTENT_REGION을 설정하고 재배포하세요.',
+        expectedEnv: {
+          CONTENT_S3_BUCKET: 'required',
+          CONTENT_REGION: 'required',
+          CONTENT_TODAY_KEY: 'optional (default: content/data/today-cards.json)'
+        }
+      });
+    }
     return res.status(500).json({ error: 'Internal server error', details: error?.message || 'Unknown error' });
   }
 }

@@ -118,11 +118,8 @@ function preprocessMarkdown(input: string): string {
   s = s.replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '');
   // Replace Imgur embed block with a direct image markdown
   s = s.replace(/<blockquote[^>]*class=\"imgur-embed-pub\"[^>]*data-id=\"([A-Za-z0-9]+)\"[^>]*>[\s\S]*?<\/blockquote>\s*(?:<script[\s\S]*?imgur\.com[\s\S]*?<\/script>)?/gi, (_m, id) => `![Imgur](https://i.imgur.com/${id}.jpg)`);
-  // Drop any remaining HTML tags except a few safe ones
-  s = s.replace(/<(?!\/?(b|strong|em|i|u|br)\b)[^>]*>/gi, (tag) => {
-    // Allow <br>
-    return /<br\s*\/?>(?i)/.test(tag) ? tag : '';
-  });
+  // Drop any remaining HTML tags except a few safe ones (handled by negative lookahead)
+  s = s.replace(/<(?!\/?(b|strong|em|i|u|br)\b)[^>]*>/gi, '');
   // Remove broken image markdown that was not closed
   s = s.replace(/!\[[^\]]*\]\([^\)]*$/gm, '');
   return s;

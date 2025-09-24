@@ -156,7 +156,7 @@ export default function TodayCards({ cards, showMap = true, mapWeatherClass }: T
                         dangerouslySetInnerHTML={{
                           __html: renderSimpleMarkdown(
                             stripMarkdown((locale === 'fr' && (card as any).i18n?.fr?.summary) ? (card as any).i18n.fr.summary : card.summary)
-                          )
+                          ).split('\n\n').map(p => p.trim() ? `<p class="mb-4">${p}</p>` : '').join('')
                         }}
                       />
 

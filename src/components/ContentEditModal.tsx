@@ -556,7 +556,7 @@ export default function ContentEditModal({
                   ref={textareaRef}
                   value={getCurrentContent()}
                   onChange={(e) => setCurrentContent(e.target.value)}
-                  className="w-full h-96 resize-none border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-primary-500 font-mono text-sm"
+                  className="w-full h-96 resize-none border border-gray-300 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-primary-500 font-sans text-[15px] md:text-[17px] leading-8"
                   placeholder={
                     activeLanguage === 'en' ? `Enter content in English...
 
@@ -595,6 +595,10 @@ Trust me, this is the kind of insider info you won't find in typical travel guid
                     💡 영어 원본 길이: {enContent.length}자 | 프랑스어 길이: {frContent.length}자
                   </div>
                 )}
+                <div className="mt-2 text-xs text-gray-500">
+                  실제 프런트 페이지와 동일한 행간(leading-8)·글자 크기(15/17px)로 편집됩니다.
+                  문단 구분은 빈 줄(Enter 두 번) 기준으로 렌더링됩니다.
+                </div>
               </div>
             </div>
           </div>

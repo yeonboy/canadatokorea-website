@@ -52,13 +52,20 @@ function setShareButtons(resultData) {
 }
 
 function drawStatsChart(stats) {
+    const KEYMAP = {
+        '전략': { en: 'Strategy', fr: 'Stratégie' },
+        '파워': { en: 'Power', fr: 'Puissance' },
+        '매력': { en: 'Charm', fr: 'Charme' },
+        '헌신': { en: 'Devotion', fr: 'Dévouement' }
+    };
+    const labels = Object.keys(stats).map(k => KEYMAP[k]?.[lang] || KEYMAP[k]?.en || k);
     const ctx = document.getElementById('stats-chart').getContext('2d');
     new Chart(ctx, {
         type: 'radar',
         data: {
-            labels: Object.keys(stats),
+            labels,
             datasets: [{
-                label: '능력치',
+                label: lang === 'fr' ? 'Statistiques' : 'Stats',
                 data: Object.values(stats),
                 backgroundColor: 'rgba(102, 252, 241, 0.2)',
                 borderColor: 'rgba(102, 252, 241, 1)',

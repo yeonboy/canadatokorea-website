@@ -37,120 +37,132 @@ const qnaData = [
         ]
     },
     {
-        question: "Q3. 사소한 일로 의견이 엇갈렸을 때, 어떻게 해결하는 사람이 좋은가요?",
+        question: __(
+          "Q3. 사소한 일로 의견이 엇갈렸을 때, 어떻게 해결하는 사람이 좋은가요?",
+          "Q3. When opinions clash over small things, how should your partner resolve it?",
+          "Q3. Quand vous n’êtes pas d’accord pour des broutilles, comment votre partenaire doit‑il gérer ?"
+        ),
         answers: [
-            { text: "\"네 말이 다 맞아\"라며 일단 져주고, 나중에 다시 이야기한다.", type: "bobby" },
-            { text: "각자의 주장을 끝까지 펼치며, 누가 옳은지 논리 배틀을 벌인다.", type: "celine" },
-            { text: "\"이런 걸로 싸우지 말자\"라며 분위기를 환기하고 먼저 사과한다.", type: "romance" },
-            { text: "잠시 생각할 시간을 가진 후, 자신의 입장을 정리해서 차분히 말한다.", type: "rumi" }
+            { text: __("\"네 말이 다 맞아\"라며 일단 져주고, 나중에 다시 이야기한다.","Says ‘you’re right’ for now and revisits later","Dit ‘tu as raison’ pour l’instant et on en reparle plus tard"), type: "bobby" },
+            { text: __("각자의 주장을 끝까지 펼치며, 누가 옳은지 논리 배틀을 벌인다.","Debates logically to see who’s right","Débat logique pour savoir qui a raison"), type: "celine" },
+            { text: __("\"이런 걸로 싸우지 말자\"라며 분위기를 환기하고 먼저 사과한다.","Says ‘let’s not fight over this’ and apologizes first","Dit ‘ne nous disputons pas pour ça’ et s’excuse d’abord"), type: "romance" },
+            { text: __("잠시 생각할 시간을 가진 후, 자신의 입장을 정리해서 차분히 말한다.","Takes time to think, then explains calmly","Prend du temps pour réfléchir puis explique calmement"), type: "rumi" }
         ]
     },
     {
-        question: "Q4. 그 사람의 SNS(인스타그램)를 구경할 때, 어떤 피드가 당신의 이상형에 가깝나요?",
+        question: __(
+          "Q4. 그 사람의 SNS(인스타그램)를 구경할 때, 어떤 피드가 당신의 이상형에 가깝나요?",
+          "Q4. Checking their Instagram, which feed is closest to your ideal?",
+          "Q4. En regardant son Instagram, quel fil vous ressemble le plus ?"
+        ),
         answers: [
-            { text: "비공개 계정이거나, 게시물이 거의 없는 유령 계정", type: "mystery" },
-            { text: "운동, 일, 목표 등 자기계발 기록으로 가득한 열정적인 피드", type: "abby" },
-            { text: "친구들과 함께 찍은 사진, 맛집, 파티 사진으로 가득한 인싸 피드", type: "romance" },
-            { text: "감성적인 글귀나 풍경 사진, 예술 작품이 가득한 피드", type: "heojunbong" }
+            { text: __("비공개 계정이거나, 게시물이 거의 없는 유령 계정","Private or almost empty ghost account","Compte privé ou quasi vide (fantôme)"), type: "mystery" },
+            { text: __("운동, 일, 목표 등 자기계발 기록으로 가득한 열정적인 피드","Self‑improvement feed: gym, work, goals","Fil de développement personnel : sport, travail, objectifs"), type: "abby" },
+            { text: __("친구들과 함께 찍은 사진, 맛집, 파티 사진으로 가득한 인싸 피드","Friends, restaurants, party pics – social butterfly","Photos d’amis, restos, fêtes – très sociable"), type: "romance" },
+            { text: __("감성적인 글귀나 풍경 사진, 예술 작품이 가득한 피드","Aesthetic quotes, landscapes, art","Citations esthétiques, paysages, art"), type: "heojunbong" }
         ]
     },
     {
-        question: "Q5. 첫 데이트, 그 사람이 어떤 장소로 데려가면 좋을까요?",
+        question: __(
+          "Q5. 첫 데이트, 그 사람이 어떤 장소로 데려가면 좋을까요?",
+          "Q5. First date – where should they take you?",
+          "Q5. Premier rendez‑vous – où devrait‑il/elle vous emmener ?"
+        ),
         answers: [
-            { text: "요즘 가장 힙한, 예약하기 힘든 맛집", type: "jinu" },
-            { text: "조용한 골목에 숨겨진 나만 아는 아지트 같은 곳", type: "heojunbong" },
-            { text: "사람이 북적이는 신나는 페스티벌이나 콘서트", type: "baby" },
-            { text: "서로에게 집중할 수 있는 한적한 공원이나 미술관", type: "mira" }
+            { text: __("요즘 가장 힙한, 예약하기 힘든 맛집","Hottest restaurant that’s hard to book","Restaurant branché difficile à réserver"), type: "jinu" },
+            { text: __("조용한 골목에 숨겨진 나만 아는 아지트 같은 곳","Hidden quiet spot only they know","Petit coin secret et tranquille"), type: "heojunbong" },
+            { text: __("사람이 북적이는 신나는 페스티벌이나 콘서트","Lively festival or concert","Festival ou concert animé"), type: "baby" },
+            { text: __("서로에게 집중할 수 있는 한적한 공원이나 미술관","Calm park or museum to focus on each other","Parc calme ou musée pour être à deux"), type: "mira" }
         ]
     },
     {
-        question: "Q6. 그 사람의 애정 표현 방식은?",
+        question: __("Q6. 그 사람의 애정 표현 방식은?","Q6. How do they show affection?","Q6. Comment montre‑t‑il/elle son affection ?"),
         answers: [
-            { text: "\"사랑해\", \"보고싶어\" 등 말로 자주 표현해준다.", type: "romance" },
-            { text: "말은 없지만, 내가 했던 말을 기억하고 챙겨주는 행동파", type: "bobby" },
-            { text: "짓궂은 장난으로 애정을 표현하는 초등학생 스타일", type: "zoey" },
-            { text: "사람들 앞에서는 무심하지만, 둘만 있을 때 뜨겁게 표현한다.", type: "gwima" }
+            { text: __("\"사랑해\", \"보고싶어\" 등 말로 자주 표현해준다.","Says ‘I love you’ and expresses with words often","Dit souvent ‘je t’aime’ et parle beaucoup"), type: "romance" },
+            { text: __("말은 없지만, 내가 했던 말을 기억하고 챙겨주는 행동파","Not talkative but remembers and acts","Parle peu mais se souvient et agit"), type: "bobby" },
+            { text: __("짓궂은 장난으로 애정을 표현하는 초등학생 스타일","Teases playfully to show love","Taquine pour montrer son affection"), type: "zoey" },
+            { text: __("사람들 앞에서는 무심하지만, 둘만 있을 때 뜨겁게 표현한다.","Cold in public, passionate in private","Froid en public, passionné en privé"), type: "gwima" }
         ]
     },
     {
-        question: "Q7. 내 친구들에게 그 사람을 소개해주는 자리, 그는 어떻게 행동할까?",
+        question: __("Q7. 내 친구들에게 그 사람을 소개해주는 자리, 그는 어떻게 행동할까?","Q7. When meeting your friends, how do they behave?","Q7. Quand il/elle rencontre vos amis, comment se comporte‑t‑il/elle ?"),
         answers: [
-            { text: "내 친구들을 처음부터 다 알고 있었던 것처럼 자연스럽게 대화를 주도한다.", type: "jinu" },
-            { text: "낯을 가리지만, 내가 하는 말을 경청하며 조용히 미소 짓는다.", type: "mira" },
-            { text: "내 친구들의 성향을 빠르게 파악하고 맞춤형으로 대한다.", type: "heojunbong" },
-            { text: "\"얘가 좀 부족해도 잘 부탁한다\"며 나를 놀리면서 분위기를 푼다.", type: "baby" }
+            { text: __("내 친구들을 처음부터 다 알고 있었던 것처럼 자연스럽게 대화를 주도한다.","Leads the conversation like they’ve known them forever","Mène la conversation comme s’il/elle les connaissait"), type: "jinu" },
+            { text: __("낯을 가리지만, 내가 하는 말을 경청하며 조용히 미소 짓는다.","Shy, listens to you and smiles","Timide, écoute et sourit"), type: "mira" },
+            { text: __("내 친구들의 성향을 빠르게 파악하고 맞춤형으로 대한다.","Reads the room fast and adapts","Analyse vite et s’adapte"), type: "heojunbong" },
+            { text: __("\"얘가 좀 부족해도 잘 부탁한다\"며 나를 놀리면서 분위기를 푼다.","Lightens mood by teasing you playfully","Détend l’atmosphère en te taquinant"), type: "baby" }
         ]
     },
     {
-        question: "Q8. 내가 하루종일 기분이 안 좋을 때, 그는 어떻게 할까?",
+        question: __("Q8. 내가 하루종일 기분이 안 좋을 때, 그는 어떻게 할까?","Q8. When you feel down all day, what would they do?","Q8. Quand vous êtes triste toute la journée, que fait‑il/elle ?"),
         answers: [
-            { text: "이유를 묻지 않고, 그냥 곁에 있어준다.", type: "mystery" },
-            { text: "\"왜 기분이 안 좋은지 원인-결과를 분석해보자\"며 해결책을 제시한다.", type: "celine" },
-            { text: "\"맛있는 거 먹으러 가자!\"라며 일단 나를 밖으로 끌어낸다.", type: "zoey" },
-            { text: "내가 좋아하는 것들(음악, 영화, 간식)을 조용히 챙겨준다.", type: "rumi" }
+            { text: __("이유를 묻지 않고, 그냥 곁에 있어준다.","Stays by your side without asking why","Reste à vos côtés sans poser de questions"), type: "mystery" },
+            { text: __("\"왜 기분이 안 좋은지 원인-결과를 분석해보자\"며 해결책을 제시한다.","Analyzes cause/effect and proposes solutions","Analyse la cause/effet et propose des solutions"), type: "celine" },
+            { text: __("\"맛있는 거 먹으러 가자!\"라며 일단 나를 밖으로 끌어낸다.","Drags you out for good food","T’emmène manger quelque chose de bon"), type: "zoey" },
+            { text: __("내가 좋아하는 것들(음악, 영화, 간식)을 조용히 챙겨준다.","Quietly prepares your favorites (music, movie, snacks)","Prépare discrètement vos favoris (musique, film, encas)"), type: "rumi" }
         ]
     },
     {
-        question: "Q9. 함께 영화를 볼 때, 그의 이상적인 모습은?",
+        question: __("Q9. 함께 영화를 볼 때, 그의 이상적인 모습은?","Q9. At the movies, what’s ideal?","Q9. Au cinéma, quel comportement idéal ?"),
         answers: [
-            { text: "영화에 대한 TMI나 해석을 끊임없이 이야기해준다.", type: "heojunbong" },
-            { text: "무서운 장면에서 슬쩍 내 손을 잡는다.", type: "romance" },
-            { text: "슬픈 장면에서 나보다 더 펑펑 운다.", type: "rumi" },
-            { text: "영화가 끝나고, 인상 깊었던 장면에 대해 깊은 대화를 나눈다.", type: "mira" }
+            { text: __("영화에 대한 TMI나 해석을 끊임없이 이야기해준다.","Talks endlessly about interpretations","Parle sans fin des interprétations"), type: "heojunbong" },
+            { text: __("무서운 장면에서 슬쩍 내 손을 잡는다.","Holds your hand at scary scenes","Prend votre main lors des scènes effrayantes"), type: "romance" },
+            { text: __("슬픈 장면에서 나보다 더 펑펑 운다.","Cries more than you at sad scenes","Pleure plus que vous aux scènes tristes"), type: "rumi" },
+            { text: __("영화가 끝나고, 인상 깊었던 장면에 대해 깊은 대화를 나눈다.","Deep talk after about key scenes","Discussion profonde après le film"), type: "mira" }
         ]
     },
     {
-        question: "Q10. 함께 쇼핑을 하러 갔다. 그는 어떤 스타일?",
+        question: __("Q10. 함께 쇼핑을 하러 갔다. 그는 어떤 스타일?","Q10. Shopping together – what’s their style?","Q10. En faisant du shopping – quel est son style ?"),
         answers: [
-            { text: "\"다 잘 어울리네\"라며 영혼 없이 칭찬만 한다.", type: "bobby" },
-            { text: "\"이건 소재가 별로네\", \"저건 디자인이 유치해\"라며 냉정하게 평가한다.", type: "celine" },
-            { text: "\"이거 너한테 완전 찰떡!\"이라며 나보다 더 신나서 옷을 골라준다.", type: "abby" },
-            { text: "\"가격은 상관없어, 마음에 들면 다 사\"라며 재력을 과시한다.", type: "jinu" }
+            { text: __("\"다 잘 어울리네\"라며 영혼 없이 칭찬만 한다.","Says ‘looks great’ to everything","Dit ‘ça te va’ pour tout"), type: "bobby" },
+            { text: __("\"이건 소재가 별로네\", \"저건 디자인이 유치해\"라며 냉정하게 평가한다.","Harsh critic of materials/design","Juge sévèrement matière/design"), type: "celine" },
+            { text: __("\"이거 너한테 완전 찰떡!\"이라며 나보다 더 신나서 옷을 골라준다.","More excited than you to pick outfits","Plus enthousiaste que vous pour choisir"), type: "abby" },
+            { text: __("\"가격은 상관없어, 마음에 들면 다 사\"라며 재력을 과시한다.","Money no object: buys what you like","Peu importe le prix : achète ce que vous aimez"), type: "jinu" }
         ]
     },
     {
-        question: "Q11. 자기 전 통화, 어떤 대화를 나누고 싶나?",
+        question: __("Q11. 자기 전 통화, 어떤 대화를 나누고 싶나?","Q11. Night call – what do you want to talk about?","Q11. Appel du soir – de quoi parler ?"),
         answers: [
-            { text: "오늘 하루 있었던 일들을 소소하게 이야기한다.", type: "rumi" },
-            { text: "서로의 미래와 꿈에 대한 진지한 이야기를 나눈다.", type: "celine" },
-            { text: "별 내용 없이, 그냥 목소리만 듣고 있는다.", type: "mystery" },
-            { text: "웃긴 이야기를 하다가 웃으면서 잠든다.", type: "baby" }
+            { text: __("오늘 하루 있었던 일들을 소소하게 이야기한다.","Share small stories from the day","Raconter les petites choses du jour"), type: "rumi" },
+            { text: __("서로의 미래와 꿈에 대한 진지한 이야기를 나눈다.","Deep talk about future and dreams","Parler sérieusement du futur et des rêves"), type: "celine" },
+            { text: __("별 내용 없이, 그냥 목소리만 듣고 있는다.","No topic—just listen to each other","Pas de sujet—juste écouter la voix"), type: "mystery" },
+            { text: __("웃긴 이야기를 하다가 웃으면서 잠든다.","Funny stories until you fall asleep","Des histoires drôles jusqu’à s’endormir"), type: "baby" }
         ]
     },
     {
-        question: "Q12. 그가 나를 위해 깜짝 이벤트를 준비했다. 어떤 이벤트일까?",
+        question: __("Q12. 그가 나를 위해 깜짝 이벤트를 준비했다. 어떤 이벤트일까?","Q12. A surprise event—what would it be?","Q12. Un événement surprise—ce serait quoi ?"),
         answers: [
-            { text: "내 친구들까지 모두 섭외한, 화려한 서프라이즈 파티", type: "romance" },
-            { text: "내가 갖고 싶다고 흘려 말했던 물건을 기억해뒀다 선물하기", type: "bobby" },
-            { text: "둘만의 추억이 담긴 장소로 나를 데려가기", type: "mira" },
-            { text: "\"이벤트는 무슨\"이라며 퉁명스럽게 말하지만, 사실은 엄청난 걸 준비했다.", type: "gwima" }
+            { text: __("내 친구들까지 모두 섭외한, 화려한 서프라이즈 파티","Grand surprise party with all your friends","Grande fête surprise avec vos amis"), type: "romance" },
+            { text: __("내가 갖고 싶다고 흘려 말했던 물건을 기억해뒀다 선물하기","Gifts what you casually wanted","Offre ce que vous aviez envie en passant"), type: "bobby" },
+            { text: __("둘만의 추억이 담긴 장소로 나를 데려가기","Takes you to a place full of memories","Vous emmène dans un lieu de souvenirs"), type: "mira" },
+            { text: __("\"이벤트는 무슨\"이라며 퉁명스럽게 말하지만, 사실은 엄청난 걸 준비했다.","Pretends not to care but plans something huge","Fait semblant de s’en fiche mais prépare un grand truc"), type: "gwima" }
         ]
     },
     {
-        question: "Q13. 라이벌 '애비'가 내 춤 실력을 칭찬했다. 그의 반응은?",
+        question: __("Q13. 라이벌 '애비'가 내 춤 실력을 칭찬했다. 그의 반응은?","Q13. Rival ‘Abby’ praised your dance—how do they react?","Q13. Le rival ‘Abby’ a loué votre danse—quelle est sa réaction ?"),
         answers: [
-            { text: "\"당연하지, 내 사람이니까\"라며 뿌듯해한다.", type: "jinu" },
-            { text: "\"그래? 어떤 점이 좋았대?\"라며 구체적으로 궁금해한다.", type: "abby" },
-            { text: "\"그 녀석이 보는 눈은 있네\"라며 라이벌을 인정한다.", type: "zoey" },
-            { text: "칭찬에 기뻐하는 나를 보며 흐뭇하게 미소 짓는다.", type: "rumi" }
+            { text: __("\"당연하지, 내 사람이니까\"라며 뿌듯해한다.","Proud: ‘Of course—you're mine.’","Fier : ‘Bien sûr—tu es à moi.’"), type: "jinu" },
+            { text: __("\"그래? 어떤 점이 좋았대?\"라며 구체적으로 궁금해한다.","Curious about specifics","Curieux des détails"), type: "abby" },
+            { text: __("\"그 녀석이 보는 눈은 있네\"라며 라이벌을 인정한다.","Admits rival has taste","Admet que le rival a du goût"), type: "zoey" },
+            { text: __("칭찬에 기뻐하는 나를 보며 흐뭇하게 미소 짓는다.","Smiles warmly seeing you happy","Sourit en te voyant heureux(se)"), type: "rumi" }
         ]
     },
     {
-        question: "Q14. 그 사람의 사소하지만 귀여운 습관은?",
+        question: __("Q14. 그 사람의 사소하지만 귀여운 습관은?","Q14. Their small but cute habit?","Q14. Sa petite habitude mignonne ?"),
         answers: [
-            { text: "집중하면 입술이 삐죽 튀어나온다.", type: "mira" },
-            { text: "맛있는 음식을 먹으면 발을 동동 구른다.", type: "baby" },
-            { text: "거짓말을 할 때 눈을 깜빡인다.", type: "heojunbong" },
-            { text: "곤란할 때 뒷목을 긁적인다.", type: "celine" }
+            { text: __("집중하면 입술이 삐죽 튀어나온다.","Pouts lips when focused","Fait la moue en se concentrant"), type: "mira" },
+            { text: __("맛있는 음식을 먹으면 발을 동동 구른다.","Taps feet when eating tasty food","Tapote des pieds en mangeant"), type: "baby" },
+            { text: __("거짓말을 할 때 눈을 깜빡인다.","Blinks when lying","Cligne des yeux en mentant"), type: "heojunbong" },
+            { text: __("곤란할 때 뒷목을 긁적인다.","Scratches back of neck when troubled","Se gratte la nuque quand il/elle est gêné(e)"), type: "celine" }
         ]
     },
     {
-        question: "Q15. 그가 나를 부르는 애칭은?",
+        question: __("Q15. 그가 나를 부르는 애칭은?","Q15. Their favorite nickname for you?","Q15. Son surnom préféré pour vous ?"),
         answers: [
-            { text: "\"애기야\"", type: "romance" },
-            { text: "\"야\" 또는 내 이름 세 글자", type: "gwima" },
-            { text: "그날그날 기분에 따라 달라지는 별명", type: "zoey" },
-            { text: "애칭 없이, 항상 존댓말로 나를 불러준다.", type: "mystery" }
+            { text: __("\"애기야\"","‘Baby’","‘Bébé’"), type: "romance" },
+            { text: __("\"야\" 또는 내 이름 세 글자","Just your name / ‘hey’","Ton prénom / ‘hé’"), type: "gwima" },
+            { text: __("그날그날 기분에 따라 달라지는 별명","Nickname changes with mood","Surnom change selon l’humeur"), type: "zoey" },
+            { text: __("애칭 없이, 항상 존댓말로 나를 불러준다.","No nickname—always polite","Pas de surnom—toujours poli(e)"), type: "mystery" }
         ]
     }
 ];
